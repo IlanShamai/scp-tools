@@ -40,7 +40,6 @@ h1 { font-weight: 900; text-transform: uppercase; margin: 0; letter-spacing: -0.
 .segmented-control button { flex: 1; border: none; background: transparent; padding: 10px; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 8px; color: var(--slate-600); }
 .segmented-control button.active { background: white; color: var(--indigo); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 
-/* Result Card Themes */
 .result-card { border-radius: 20px; border: 3px solid; padding: 28px; display: flex; flex-direction: column; transition: 0.3s; }
 .theme-blue { background: #eff6ff; border-color: #3b82f6; color: #1e40af; }
 .theme-red { background: #fef2f2; border-color: var(--red-ui); color: #991b1b; }
@@ -53,7 +52,6 @@ h1 { font-weight: 900; text-transform: uppercase; margin: 0; letter-spacing: -0.
 
 .result-alert { background: rgba(255,255,255,0.5); padding: 15px; border-radius: 14px; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 10px; margin-top: auto; border: 1px solid rgba(0,0,0,0.05); }
 
-/* Study Grid */
 .logic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 @media (max-width: 800px) { .logic-grid { grid-template-columns: 1fr; } }
 .logic-panel { padding: 30px; border-radius: 20px; }

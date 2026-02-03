@@ -24,12 +24,10 @@
                         <span class="label">Utensil Status</span>
                         <span id="val-ben-yomo" class="value">--</span>
                     </button>
-
                     <button id="btn-kli-rishon" class="toggle-btn">
                         <span class="label">Heat Intensity</span>
                         <span id="val-kli-rishon" class="value">--</span>
                     </button>
-
                     <button id="btn-shishim" class="toggle-btn">
                         <span class="label">Volume Ratio</span>
                         <span id="val-shishim" class="value">--</span>
@@ -44,7 +42,6 @@
                             <button id="btn-wood">Wood</button>
                         </div>
                     </div>
-
                     <div class="modifier-group">
                         <label>Dipping Frequency</label>
                         <div class="segmented-control">
@@ -60,22 +57,11 @@
                     <i id="result-icon" data-lucide="info"></i>
                     <h3 id="result-title">Status</h3>
                 </div>
-
                 <div class="result-stats">
-                    <div class="stat-row">
-                        <span>Food Status</span>
-                        <span id="stat-food" class="bold">--</span>
-                    </div>
-                    <div class="stat-row">
-                        <span>Utensil Status</span>
-                        <span id="stat-utensil" class="bold">--</span>
-                    </div>
-                    <div class="stat-row">
-                        <span>Pot Wall Status</span>
-                        <span id="stat-pot" class="bold">--</span>
-                    </div>
+                    <div class="stat-row"><span>Food Status</span><span id="stat-food" class="bold">--</span></div>
+                    <div class="stat-row"><span>Utensil Status</span><span id="stat-utensil" class="bold">--</span></div>
+                    <div class="stat-row"><span>Pot Wall Status</span><span id="stat-pot" class="bold">--</span></div>
                 </div>
-
                 <div class="result-alert">
                     <i data-lucide="info"></i>
                     <span id="alert-text">Required Action</span>
@@ -88,7 +74,6 @@
                 <h4 class="section-label"><i data-lucide="git-branch"></i> S"A vs. Rama Machloket</h4>
                 <div id="machloket-content" class="study-content"></div>
             </div>
-
             <div class="logic-panel light">
                 <h4 class="section-label blue-text"><i data-lucide="graduation-cap"></i> Lamdus & Logic</h4>
                 <div id="logic-deep-dive" class="study-content"></div>
@@ -121,49 +106,45 @@
             let res = { title: "", food: "", utensil: "", pot: "", machloket: "", deep: "", color: "blue", icon: "info", alert: "" };
 
             if (state.isKliRishon && state.isBenYomo && !state.hasShishim) {
-                // RED ZONE
                 res.color = "red"; res.icon = "alert-circle";
-                res.title = "Assur B'Hana'ah (Full Treif)";
-                res.food = "Treif (No Benefit)";
-                res.utensil = "Treif";
-                res.pot = "Treif";
-                res.alert = "Forbidden to pets; sell the metal pot (not contents).";
-                res.machloket = "<b>Shulchan Aruch:</b> A Ben Yomo ladle in a Kli Rishon without Shishim creates a full prohibition.<br><br><b>Rama:</b> Agrees. Note that Shishim is needed even if only a <i>Kezayis</i> of flavor was absorbed, if the amount of flavor is unknown (Chochmas Adam).";
-                res.deep = "<b>Be'er HaGola:</b> Even here, you may wash your hair with the water! Hygiene is not 'deriving benefit from flavor'.<br><br><b>Chasam Sofer:</b> Selling the pot is allowed because the price of the metal doesn't increase due to the flavor in the walls.";
+                res.title = "Assur B'Hana'ah (Forbidden)";
+                res.food = "Treif (No Benefit)"; res.utensil = "Treif"; res.pot = "Treif";
+                res.alert = "Contents are forbidden for consumption or animal feed.";
+                res.machloket = "<b>Shulchan Aruch & Rama:</b> Without Shishim in a Kli Rishon, the absorbed milk flavor in a Ben Yomo ladle prohibits the entire pot. <b>Chochmas Adam:</b> This applies if the amount of absorbed milk is unknown; if you knew it was only a <i>Kezayis</i>, you'd only need 60x against that <i>Kezayis</i>.";
+                res.deep = "<b>Be'er HaGola:</b> Even in this 'Treif' state, hot water in the pot can be used for non-tasting benefits like washing hair. <b>Chasam Sofer:</b> One can sell the metal pot because its value is in the metal, not the flavor.";
             }
             else {
-                // BLUE ZONE
                 res.color = "blue"; res.icon = "info";
-                res.food = "Mutar (Permitted)";
-                res.pot = "Mutar";
-                res.utensil = "Needs Kashering";
+                res.food = "Mutar (Permitted)"; res.pot = "Mutar"; res.utensil = "Needs Kashering";
 
                 if (!state.isKliRishon) {
-                    res.title = "Kli Sheini Scenario";
-                    res.alert = "Spoon requires Kashering (Efshar L'sakein).";
-                    res.machloket = "<b>Shulchan Aruch:</b> Some say Kli Sheini has the power to absorb/push flavor up to <i>Kedi Klifa</i>. bedieved everything is permitted by rinsing.<br><br><b>Rama:</b> bedieved the coffee/mug are allowed as we rely on the lenient opinion that Kli Sheini doesn't push flavor.";
-                    res.deep = "<b>The Maharshal:</b> A Kli Sheini can't extract flavor AND push it back in. However, <b>R' Akiva Eiger</b> notes that because you <i>can</i> kasher the spoon, you must do so (Efshar L'sakein).";
+                    res.title = "Kli Sheini Situation";
+                    res.alert = "Utensil requires Hagala (Kashering).";
+                    res.machloket = "<b>Shulchan Aruch:</b> Bedieved everything is permitted by rinsing. <b>Rama:</b> Agrees the mug/contents are allowed as a Kli Sheini doesn't push flavor.";
+                    res.deep = "<b>Maharshal:</b> A Kli Sheini lacks the strength for 'two actions' (extracting then pushing). <b>R' Akiva Eiger:</b> Since the spoon is <i>Efshar L'sakein</i> (can be fixed), you must kasher it lechatchila.";
                 }
                 else if (!state.isBenYomo) {
-                    res.title = "Eino Ben Yomo Scenario";
-                    res.alert = "Kasher Utensil before use (Rama).";
-                    res.machloket = "<b>Shulchan Aruch:</b> The food and pot are permitted because the taste is <i>L'fgum</i> (bitter). The ladle still needs kashering.<br><br><b>Rama:</b> Agrees the food is fine, but specifies the custom is to never use this utensil for anything until it is kashered.";
-                    res.deep = "<b>Shach:</b> The ladle isn't 'Treif' (no fresh M&M fusion). Technically it's 'liminal'—it can't be used for meat because it's dairy, and can't be used for dairy because it touched meat.";
+                    res.title = "Eino Ben Yomo Situation";
+                    res.alert = "Kasher Utensil before use.";
+                    res.machloket = "<b>S\"A & Rama:</b> The food is permitted because the flavor is <i>L'fgum</i> (bitter). The ladle needs kashering. <b>Rama:</b> Custom is not to use it for anything until kashered.";
+                    res.deep = "<b>Shach:</b> The tool isn't truly 'Treif' (no fresh M&M fusion). However, it retains its Dairy/Meat identity and now 'touched' the other side, requiring Hagala to reset it.";
                 }
                 else if (state.hasShishim) {
-                    res.title = "Shishim Present";
-                    res.alert = "Utensil is Treif; Kasher via Hagala.";
+                    res.title = "Bitul B'Shishim Situation";
+                    res.alert = "Kasher Utensil via Hagala.";
 
-                    const conductMach = state.isMetal
-                        ? "<b>S\"A (Stam) / Rama:</b> Shishim is only required against the part that <i>entered</i> the pot (Submerged + Airspace).<br><br><b>Rabbeinu Peretz / Kaf HaChaim:</b> Metal is <i>'Cham Miktzato'</i>—require Shishim against the WHOLE handle."
-                        : "<b>Mishna Pesachim:</b> Wood does not conduct heat. All agree Shishim is only needed for the submerged part.";
+                    let materialMach = state.isMetal
+                        ? "<b>Metal (Rabbeinu Peretz):</b> Metal conducts heat (<i>Cham Miktzato</i>), requiring Shishim against the WHOLE handle. <b>S\"A/Rama:</b> Measurement is only for the part that entered the pot's airspace."
+                        : "<b>Wood:</b> Non-conductive. All agree Shishim is only needed for the submerged portion.";
 
-                    const chananMach = state.isDoubleDip
-                        ? "<b>Shulchan Aruch:</b> Needs 120x! (Spoon became <i>Chanan</i> after 1st dip).<br><br><b>Rama:</b> Only needs 60x. We do not apply <i>Chanan</i> to absorbed flavor in utensils."
-                        : "<b>Awareness:</b> If you noticed the mistake between dips, both agree only 60x is needed.";
+                    let frequencyMach = state.isDoubleDip
+                        ? "<b>Double Dip:</b> S\"A requires 120x because of <i>Chanan</i> (the spoon became forbidden after dip 1). Rama requires only 60x, as we don't apply <i>Chanan</i> to utensils."
+                        : "<b>Single Dip:</b> Both agree that Shishim is calculated against the portion of the spoon that entered the pot.";
 
-                    res.machloket = `${conductMach}<br><br>${chananMach}`;
-                    res.deep = "<b>Rav Shimon Shkop:</b> Bitul is a <i>'Din in the Gavra'</i>. Without awareness, the first milk was never nullified, so both it and the second <i>Chanan</i> flavor must be nullified together (120x).";
+                    res.machloket = `${materialMach}<br><br>${frequencyMach}`;
+                    res.deep = state.isDoubleDip
+                        ? "<b>Rav Shimon Shkop:</b> If you didn't know about dip #1, <i>Bitul</i> never activated for the milk. Now you must nullify both the milk and the new <i>Chanan</i> flavor simultaneously."
+                        : "<b>Submerged vs. Airspace:</b> Dispute exists if you measure the part in the food (Chochmas Adam) or the part that entered the pot's rim even if not touching liquid (Kretei U'Pleti).";
                 }
             }
 
