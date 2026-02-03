@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siman Tzaddi Daled Interactive</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🍲</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Siman Tzaddi Daled Interactive</h1>
+            <p class="subtitle">"The Meat & Potatoes of Basar B'chalav"</p>
+        </header>
+
+        <div class="main-grid">
+            <section class="controls bg-white">
+                <h2 class="section-label"><i data-lucide="refresh-cw"></i> Toggle Variables</h2>
+
+                <div class="toggle-grid">
+                    <button id="btn-ben-yomo" class="toggle-btn">
+                        <span class="label">Utensil Status</span>
+                        <span id="val-ben-yomo" class="value">--</span>
+                    </button>
+
+                    <button id="btn-kli-rishon" class="toggle-btn">
+                        <span class="label">Heat Source</span>
+                        <span id="val-kli-rishon" class="value">--</span>
+                    </button>
+
+                    <button id="btn-shishim" class="toggle-btn">
+                        <span class="label">Volume Check</span>
+                        <span id="val-shishim" class="value">--</span>
+                    </button>
+                </div>
+
+                <div class="advanced-modifiers">
+                    <div class="modifier-group">
+                        <label>Utensil Material</label>
+                        <div class="segmented-control">
+                            <button id="btn-metal">Metal</button>
+                            <button id="btn-wood">Wood</button>
+                        </div>
+                    </div>
+
+                    <div class="modifier-group">
+                        <label>Dip Frequency</label>
+                        <div class="segmented-control">
+                            <button id="btn-single-dip">Single Dip</button>
+                            <button id="btn-double-dip">Double Dip</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="result-card" class="result-card">
+                <div class="result-header">
+                    <i id="result-icon" data-lucide="info"></i>
+                    <h3 id="result-title">Outcome</h3>
+                </div>
+
+                <div class="result-stats">
+                    <div class="stat-row">
+                        <span>Food Status</span>
+                        <span id="stat-food" class="bold">--</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Utensil Status</span>
+                        <span id="stat-utensil" class="bold">--</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Pot Status</span>
+                        <span id="stat-pot" class="bold">--</span>
+                    </div>
+                </div>
+
+                <div class="result-alert">
+                    <i data-lucide="zap"></i>
+                    <span id="alert-text">Alert</span>
+                </div>
+            </section>
+        </div>
+
+        <div class="logic-grid">
+            <div class="logic-panel dark">
+                <h4 class="section-label"><i data-lucide="layers"></i> The Halachic Logic</h4>
+                <p id="logic-text"></p>
+                <div id="material-note" class="material-note"></div>
+            </div>
+
+            <div class="logic-panel light">
+                <h4 class="section-label indigo"><i data-lucide="info"></i> Shiur Gem</h4>
+                <p id="gem-text" class="gem-content"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let state = {
+            isBenYomo: true,
+            isKliRishon: true,
+            hasShishim: false,
+            isMetal: true,
+            isDoubleDip: false
+        };
+
+        const updateUI = () => {
+            document.getElementById('btn-ben-yomo').className = `toggle-btn ${state.isBenYomo ? 'active indigo' : ''}`;
+            document.getElementById('val-ben-yomo').innerText = state.isBenYomo ? 'Ben Yomo' : 'Eino Ben Yomo';
+            document.getElementById('btn-kli-rishon').className = `toggle-btn ${state.isKliRishon ? 'active orange' : ''}`;
+            document.getElementById('val-kli-rishon').innerText = state.isKliRishon ? 'Kli Rishon' : 'Kli Sheini';
+            document.getElementById('btn-shishim').className = `toggle-btn ${!state.hasShishim ? 'active amber' : ''}`;
+            document.getElementById('val-shishim').innerText = state.hasShishim ? 'Shishim (60x)' : 'No Shishim';
+
+            document.getElementById('btn-metal').className = state.isMetal ? 'active' : '';
+            document.getElementById('btn-wood').className = !state.isMetal ? 'active' : '';
+            document.getElementById('btn-single-dip').className = !state.isDoubleDip ? 'active' : '';
+            document.getElementById('btn-double-dip').className = state.isDoubleDip ? 'active' : '';
+
+            let outcome = {};
+
+            if (!state.isKliRishon) {
+                if (!state.isBenYomo) {
+                    // ALL MUTAR (Green)
+                    outcome = {
+                        title: "Fully Mutar", food: "Mutar", utensil: "Mutar (Kasher Lechatchila)", pot: "Mutar",
+                        logic: "Eino Ben Yomo combined with a Kli Sheini has no power to transfer taste. Bedieved everything is permitted.",
+                        gems: "Combined Leniency: We rely on the Maharshal's rule that a Kli Sheini cannot extract and then push taste, especially when the taste is already 'stale' (EBY).",
+                        colorClass: "green", icon: "check-circle", alert: "Most lenient case. Simply rinse the utensil."
+                    };
+                } else {
+                    // MIXED (Blue)
+                    outcome = {
+                        title: "Kli Sheini Mixed Result", food: "Mutar (Bedieved)", utensil: "Needs Kashering", pot: "Mutar",
+                        logic: "Maharshal: A Kli Sheini cannot perform 'two actions' (extracting and pushing flavor). The food remains kosher.",
+                        gems: "R' Akiva Eiger: Since the spoon can be kashered (Efshar L'sakein), we do not rely on the bedieved status for the utensil itself.",
+                        colorClass: "blue", icon: "info", alert: "Food is permitted. Utensil requires kashering lechatchila."
+                    };
+                }
+            }
+            else if (!state.isBenYomo) {
+                // MIXED (Blue)
+                outcome = {
+                    title: "Eino Ben Yomo Result", food: "Mutar", utensil: "Needs Kashering", pot: "Mutar",
+                    logic: "Flavor is 'Nosein Ta'am L'fgum' (bitter). Bedieved the food is permitted, but S\"A rules the utensil still requires kashering.",
+                    gems: "Shach: The tool isn't technically 'treif' (no fresh M&M fusion), but Rama notes custom is not to use it until kashered.",
+                    colorClass: "blue", icon: "info", alert: "Permitted without Shishim. Kasher utensil before reuse."
+                };
+            }
+            else if (state.hasShishim) {
+                // MIXED (Blue)
+                const dipText = state.isDoubleDip ? "S\"A: Needs 120x (Chanan). Rama: 60x (No Chanan in utensils)." : "60x required.";
+                const conductText = state.isMetal ? "Rabbeinu Peretz: Requires 60x against the WHOLE ladle handle (conductivity)." : "Wood: 60x only against the submerged part.";
+                outcome = {
+                    title: "Shishim Situation", food: "Mutar", utensil: "Treif", pot: "Mutar",
+                    logic: `Food is nullified by Shishim. ${dipText} ${conductText}`,
+                    gems: "Rav Shimon Shkop: Bitul only activates when a person discovers the mistake. If you didn't know between dips, the milk flavor was never legally nullified!",
+                    colorClass: "blue", icon: "info", alert: state.isDoubleDip ? "S\"A requires 120x total volume!" : "Food/Pot are Mutar via Shishim."
+                };
+            }
+            else {
+                // ALL TREIF (Red)
+                outcome = {
+                    title: "Treif (Assur B'Hana'ah)", food: "Treif", utensil: "Treif", pot: "Treif",
+                    logic: "Full Basar B'chalav prohibition in a Kli Rishon with no nullification (Shishim). No benefit allowed.",
+                    gems: "Be'er HaGola: You may use the water for non-taste benefit (like washing hair). Chasam Sofer allows selling the metal pot.",
+                    colorClass: "red", icon: "alert-triangle", alert: "Contents forbidden even for animals. Sell the pot, throw out the soup."
+                };
+            }
+
+            const card = document.getElementById('result-card');
+            card.className = `result-card theme-${outcome.colorClass}`;
+            document.getElementById('result-title').innerText = outcome.title;
+            document.getElementById('stat-food').innerText = outcome.food;
+            document.getElementById('stat-utensil').innerText = outcome.utensil;
+            document.getElementById('stat-pot').innerText = outcome.pot;
+            document.getElementById('alert-text').innerText = outcome.alert;
+            document.getElementById('logic-text').innerText = outcome.logic;
+            document.getElementById('gem-text').innerText = outcome.gems;
+            document.getElementById('result-icon').setAttribute('data-lucide', outcome.icon);
+
+            const note = document.getElementById('material-note');
+            if (state.isMetal && state.isKliRishon && state.isBenYomo) {
+                note.innerText = 'Rabbeinu Peretz (Metal): Conductive heat requires Shishim against the whole handle.';
+            } else if (!state.isMetal && state.isKliRishon && state.isBenYomo) {
+                note.innerText = 'Wood: Non-conductive. Measurement only required for submerged portion.';
+            } else {
+                note.innerText = '';
+            }
+            lucide.createIcons();
+        };
+
+        document.getElementById('btn-ben-yomo').onclick = () => { state.isBenYomo = !state.isBenYomo; updateUI(); };
+        document.getElementById('btn-kli-rishon').onclick = () => { state.isKliRishon = !state.isKliRishon; updateUI(); };
+        document.getElementById('btn-shishim').onclick = () => { state.hasShishim = !state.hasShishim; updateUI(); };
+        document.getElementById('btn-metal').onclick = () => { state.isMetal = true; updateUI(); };
+        document.getElementById('btn-wood').onclick = () => { state.isMetal = false; updateUI(); };
+        document.getElementById('btn-single-dip').onclick = () => { state.isDoubleDip = false; updateUI(); };
+        document.getElementById('btn-double-dip').onclick = () => { state.isDoubleDip = true; updateUI(); };
+
+        updateUI();
+    </script>
+</body>
+</html>
