@@ -1,0 +1,6 @@
+[build]
+  # Publish directory - Netlify will serve files from here as the site root
+  publish = "siman/צד/ladel_and_pot/"
+
+# No build command needed for static HTML/CSS
+# Netlify will automatically deploy the files from the publish directory
