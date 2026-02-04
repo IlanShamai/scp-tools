@@ -118,15 +118,16 @@
                 res.food = "Mutar (Permitted)"; res.pot = "Mutar"; res.utensil = "Needs Kashering";
 
                 if (!state.isKliRishon) {
-                    // Kli Sheini branch – corrected to reflect Maharshal:
-                    res.title = "Kli Sheini – Drink Mutar, Spoon Assur";
-                    res.alert = "Coffee and mug are permitted; spoon requires Hagala (kashering) before reuse.";
+                    // Kli Sheini branch – updated to reflect machloket:
+                    res.title = "Kli Sheini – Machloket: Food Status";
+                    res.alert = "Maharshal: Coffee and spoon both assur; cup mutar. S\"A/Rama: Coffee and cup mutar with rinsing; spoon needs kashering.";
                     res.machloket =
-                        "<b>Shulchan Aruch:</b> Bedieved the drink and mug are permitted with rinsing, but the spoon itself remains forbidden until kashered, since it absorbed from a basar b'chalav mixture.[web:2][web:11]" +
-                        " <b>Rama:</b> Also permits the coffee and mug in a Kli Sheini (the taste does not continue into the cup), yet the spoon is treated as needing Hagala before further meat or milk use.[web:2][web:11]";
+                        "<b>Shulchan Aruch & Rama:</b> In a Kli Sheini, bedieved the drink and mug are permitted with rinsing, but the spoon itself remains forbidden until kashered, since it absorbed from a basar b'chalav mixture.[web:2][web:11]" +
+                        " <b>Maharshal (Dissenting):</b> Holds that in a Kli Sheini the spoon absorbs and becomes assur, and can prohibit the coffee itself. However, the coffee cannot then asur the cup. Therefore: spoon assur, coffee assur, cup mutar.[web:11]" +
+                        " Most poskim follow S\"A/Rama permitting the food.";
                     res.deep =
-                        "<b>Maharshal:</b> In a Kli Sheini the spoon can still absorb and become assur, and it may prohibit the coffee, but the coffee cannot then asur the cup; therefore the spoon and coffee are assur while the cup remains mutar.[web:11]" +
-                        " <b>R' Akiva Eiger:</b> Since the spoon is <i>Efshar L'sakein</i> (readily kasherable), you must kasher it lechatchila and not continue using it as-is.[web:2]";
+                        "<b>R' Akiva Eiger:</b> Since the spoon is <i>Efshar L'sakein</i> (readily kasherable), you must kasher it lechatchila and not continue using it as-is.[web:2]" +
+                        " <b>Practical Halacha:</b> The normative practice follows the S\"A/Rama that the food is mutar, though the utensil requires hagala before reuse.";
                 }
                 else if (!state.isBenYomo) {
                     res.title = "Eino Ben Yomo Situation";
