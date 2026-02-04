@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Siman Tzaddi Daled: S"A & Rama Study Aid</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🍲</text></svg>">
+    <link rel="icon" href="image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🍲</text></svg>">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -118,33 +118,38 @@
                 res.food = "Mutar (Permitted)"; res.pot = "Mutar"; res.utensil = "Needs Kashering";
 
                 if (!state.isKliRishon) {
-                    res.title = "Kli Sheini Situation";
-                    res.alert = "Utensil requires Hagala (Kashering).";
-                    res.machloket = "<b>Shulchan Aruch:</b> Bedieved everything is permitted by rinsing. <b>Rama:</b> Agrees the mug/contents are allowed as a Kli Sheini doesn't push flavor.";
-                    res.deep = "<b>Maharshal:</b> A Kli Sheini lacks the strength for 'two actions' (extracting then pushing). <b>R' Akiva Eiger:</b> Since the spoon is <i>Efshar L'sakein</i> (can be fixed), you must kasher it lechatchila.";
+                    // Kli Sheini branch – corrected to reflect Maharshal:
+                    res.title = "Kli Sheini – Drink Mutar, Spoon Assur";
+                    res.alert = "Coffee and mug are permitted; spoon requires Hagala (kashering) before reuse.";
+                    res.machloket =
+                        "<b>Shulchan Aruch:</b> Bedieved the drink and mug are permitted with rinsing, but the spoon itself remains forbidden until kashered, since it absorbed from a basar b'chalav mixture.[web:2][web:11]" +
+                        " <b>Rama:</b> Also permits the coffee and mug in a Kli Sheini (the taste does not continue into the cup), yet the spoon is treated as needing Hagala before further meat or milk use.[web:2][web:11]";
+                    res.deep =
+                        "<b>Maharshal:</b> In a Kli Sheini the spoon can still absorb and become assur, and it may prohibit the coffee, but the coffee cannot then asur the cup; therefore the spoon and coffee are assur while the cup remains mutar.[web:11]" +
+                        " <b>R' Akiva Eiger:</b> Since the spoon is <i>Efshar L'sakein</i> (readily kasherable), you must kasher it lechatchila and not continue using it as-is.[web:2]";
                 }
                 else if (!state.isBenYomo) {
                     res.title = "Eino Ben Yomo Situation";
                     res.alert = "Kasher Utensil before use.";
-                    res.machloket = "<b>S\"A & Rama:</b> The food is permitted because the flavor is <i>L'fgum</i> (bitter). The ladle needs kashering. <b>Rama:</b> Custom is not to use it for anything until kashered.";
-                    res.deep = "<b>Shach:</b> The tool isn't truly 'Treif' (no fresh M&M fusion). However, it retains its Dairy/Meat identity and now 'touched' the other side, requiring Hagala to reset it.";
+                    res.machloket = "<b>S\"A & Rama:</b> The food is permitted because the flavor is <i>L'fgum</i> (bitter). The ladle needs kashering. <b>Rama:</b> Custom is not to use it for anything until kashered.[web:2]";
+                    res.deep = "<b>Shach:</b> The tool isn't truly 'Treif' (no fresh M&M fusion). However, it retains its Dairy/Meat identity and now 'touched' the other side, requiring Hagala to reset it.[web:2]";
                 }
                 else if (state.hasShishim) {
                     res.title = "Bitul B'Shishim Situation";
                     res.alert = "Kasher Utensil via Hagala.";
 
                     let materialMach = state.isMetal
-                        ? "<b>Metal (Rabbeinu Peretz):</b> Metal conducts heat (<i>Cham Miktzato</i>), requiring Shishim against the WHOLE handle. <b>S\"A/Rama:</b> Measurement is only for the part that entered the pot's airspace."
-                        : "<b>Wood:</b> Non-conductive. All agree Shishim is only needed for the submerged portion.";
+                        ? "<b>Metal (Rabbeinu Peretz):</b> Metal conducts heat (<i>Cham Miktzato</i>), requiring Shishim against the WHOLE handle. <b>S\"A/Rama:</b> Measurement is only for the part that entered the pot's airspace.[web:2]"
+                        : "<b>Wood:</b> Non-conductive. All agree Shishim is only needed for the submerged portion.[web:14]";
 
                     let frequencyMach = state.isDoubleDip
-                        ? "<b>Double Dip:</b> S\"A requires 120x because of <i>Chanan</i> (the spoon became forbidden after dip 1). Rama requires only 60x, as we don't apply <i>Chanan</i> to utensils."
-                        : "<b>Single Dip:</b> Both agree that Shishim is calculated against the portion of the spoon that entered the pot.";
+                        ? "<b>Double Dip:</b> S\"A requires 120x because of <i>Chanan</i> (the spoon became forbidden after dip 1). Rama requires only 60x, as we don't apply <i>Chanan</i> to utensils.[web:2]"
+                        : "<b>Single Dip:</b> Both agree that Shishim is calculated against the portion of the spoon that entered the pot.[web:2]";
 
                     res.machloket = `${materialMach}<br><br>${frequencyMach}`;
                     res.deep = state.isDoubleDip
-                        ? "<b>Rav Shimon Shkop:</b> If you didn't know about dip #1, <i>Bitul</i> never activated for the milk. Now you must nullify both the milk and the new <i>Chanan</i> flavor simultaneously."
-                        : "<b>Submerged vs. Airspace:</b> Dispute exists if you measure the part in the food (Chochmas Adam) or the part that entered the pot's rim even if not touching liquid (Kretei U'Pleti).";
+                        ? "<b>Rav Shimon Shkop:</b> If you didn't know about dip #1, <i>Bitul</i> never activated for the milk. Now you must nullify both the milk and the new <i>Chanan</i> flavor simultaneously.[web:2]"
+                        : "<b>Submerged vs. Airspace:</b> Dispute exists if you measure the part in the food (Chochmas Adam) or the part that entered the pot's rim even if not touching liquid (Kretei U'Pleti).[web:2]";
                 }
             }
 
