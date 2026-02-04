@@ -115,12 +115,14 @@
             }
             else {
                 res.color = "blue"; res.icon = "info";
-                res.food = "Mutar (Permitted)"; res.pot = "Mutar"; res.utensil = "Needs Kashering";
+                res.utensil = "Needs Kashering";
 
                 if (!state.isKliRishon) {
-                    // Kli Sheini branch – updated to reflect machloket:
+                    // Kli Sheini branch – machloket on food status:
                     res.title = "Kli Sheini – Machloket: Food Status";
-                    res.alert = "Maharshal: Coffee and spoon both assur; cup mutar. S\"A/Rama: Coffee and cup mutar with rinsing; spoon needs kashering.";
+                    res.food = "Machloket";
+                    res.pot = "Mutar";
+                    res.alert = "Maharshal: Coffee assur. S\"A/Rama: Coffee mutar with rinsing. All agree: spoon needs kashering, cup is mutar.";
                     res.machloket =
                         "<b>Shulchan Aruch & Rama:</b> In a Kli Sheini, bedieved the drink and mug are permitted with rinsing, but the spoon itself remains forbidden until kashered, since it absorbed from a basar b'chalav mixture.[web:2][web:11]" +
                         " <b>Maharshal (Dissenting):</b> Holds that in a Kli Sheini the spoon absorbs and becomes assur, and can prohibit the coffee itself. However, the coffee cannot then asur the cup. Therefore: spoon assur, coffee assur, cup mutar.[web:11]" +
@@ -131,12 +133,16 @@
                 }
                 else if (!state.isBenYomo) {
                     res.title = "Eino Ben Yomo Situation";
+                    res.food = "Mutar (Permitted)";
+                    res.pot = "Mutar";
                     res.alert = "Kasher Utensil before use.";
                     res.machloket = "<b>S\"A & Rama:</b> The food is permitted because the flavor is <i>L'fgum</i> (bitter). The ladle needs kashering. <b>Rama:</b> Custom is not to use it for anything until kashered.[web:2]";
                     res.deep = "<b>Shach:</b> The tool isn't truly 'Treif' (no fresh M&M fusion). However, it retains its Dairy/Meat identity and now 'touched' the other side, requiring Hagala to reset it.[web:2]";
                 }
                 else if (state.hasShishim) {
                     res.title = "Bitul B'Shishim Situation";
+                    res.food = "Mutar (Permitted)";
+                    res.pot = "Mutar";
                     res.alert = "Kasher Utensil via Hagala.";
 
                     let materialMach = state.isMetal
