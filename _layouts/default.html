@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{{ site.description }}">
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
   <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/tokens.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   
   {% if page.extra_css %}
@@ -22,8 +24,19 @@
         </a>
       </div>
       <nav class="site-nav" aria-label="Main navigation">
-        <a href="{{ '/' | relative_url }}" class="nav-link">Home</a>
-        <a href="#about" class="nav-link">About</a>
+        <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' or page.url == '/index.html' or page.url == '' %}nav-active{% endif %}">Home</a>
+        <div class="nav-dropdown">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="nav-menu" id="nav-trigger" aria-label="Open tools menu">
+            <span class="nav-burger" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+            <span class="nav-dropdown-label">Tools</span>
+          </button>
+          <ul class="nav-dropdown-menu" id="nav-menu" role="menu" aria-labelledby="nav-trigger">
+            <li role="none"><a href="{{ '/siman-94.html' | relative_url }}" role="menuitem" class="{% if page.url contains 'siman-94' %}nav-active{% endif %}">Siman 94 — Ladle & Pot</a></li>
+            <li role="none"><a href="{{ '/siman-96.html' | relative_url }}" role="menuitem" class="{% if page.url contains 'siman-96' %}nav-active{% endif %}">Siman 96 — Davar Charif</a></li>
+          </ul>
+        </div>
       </nav>
     </div>
   </header>
@@ -56,5 +69,26 @@
       <p>&copy; 2024 SCP Tools. Built with care.</p>
     </div>
   </footer>
+
+  <script>
+    (function() {
+      var trigger = document.getElementById('nav-trigger');
+      var menu = document.getElementById('nav-menu');
+      var dropdown = trigger && trigger.closest('.nav-dropdown');
+      if (trigger && menu && dropdown) {
+        trigger.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var open = dropdown.classList.toggle('is-open');
+          trigger.setAttribute('aria-expanded', open);
+        });
+        document.addEventListener('click', function(e) {
+          if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('is-open');
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
