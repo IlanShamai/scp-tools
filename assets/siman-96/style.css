@@ -26,11 +26,6 @@
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   padding: 1rem;
-  position: sticky;
-  top: var(--nav-height, 52px);
-  z-index: 100;
-  backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.95);
 }
 
 .siman-96-page .header-meta {
