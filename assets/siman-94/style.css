@@ -1,4 +1,22 @@
-/* Siman 94 — Scoped styles */
+/* Siman 94 — Ladle & Pot — scoped page styles */
+
+:root {
+  --accent-94: #4f46e5;
+  --accent-94-dark: #3730a3;
+  --orange-94: #ea580c;
+  --orange-94-dark: #9a3412;
+  --amber-94: #d97706;
+  --amber-94-dark: #92400e;
+
+  --slate-50: #f8fafc;
+  --slate-200: #e2e8f0;
+  --slate-400: #94a3b8;
+  --slate-600: #475569;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+}
+
+/* Page wrapper */
 
 .siman-94-page {
   background-color: var(--slate-50);
@@ -7,8 +25,6 @@
   padding: var(--space-xl);
   line-height: 1.6;
 }
-
-/* Layout */
 
 .siman-94-page .container {
   max-width: 1100px;
@@ -31,6 +47,8 @@
   color: var(--slate-400);
   font-style: italic;
 }
+
+/* Layout */
 
 .siman-94-page .main-grid {
   display: grid;
@@ -55,7 +73,18 @@
   box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
 
-/* Toggles */
+.siman-94-page .section-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--slate-400);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+/* Toggle controls */
 
 .siman-94-page .toggle-grid {
   display: grid;
@@ -75,9 +104,85 @@
   color: var(--slate-800);
 }
 
+.siman-94-page .toggle-btn .label {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.siman-94-page .toggle-btn .value {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.siman-94-page .toggle-btn.active.indigo {
+  background: var(--accent-94);
+  border-color: var(--accent-94-dark);
+}
+
+.siman-94-page .toggle-btn.active.orange {
+  background: var(--orange-94);
+  border-color: var(--orange-94-dark);
+}
+
+.siman-94-page .toggle-btn.active.amber {
+  background: var(--amber-94);
+  border-color: var(--amber-94-dark);
+}
+
 .siman-94-page .toggle-btn.active {
   color: white;
   box-shadow: 0 8px 12px -3px rgba(0,0,0,0.1);
+}
+
+.siman-94-page .toggle-btn.active .label {
+  color: rgba(255,255,255,0.7);
+}
+
+/* Advanced modifiers */
+
+.siman-94-page .advanced-modifiers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  border-top: 1px solid var(--slate-200);
+  padding-top: var(--space-xl);
+}
+
+.siman-94-page .modifier-group label {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--slate-400);
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+.siman-94-page .segmented-control {
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 10px;
+  display: flex;
+}
+
+.siman-94-page .segmented-control button {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  color: var(--slate-600);
+}
+
+.siman-94-page .segmented-control button.active {
+  background: var(--surface);
+  color: var(--accent-94);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /* Results */
@@ -88,6 +193,19 @@
   padding: 28px;
   display: flex;
   flex-direction: column;
+  transition: 0.3s;
+}
+
+.siman-94-page .theme-blue {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1e40af;
+}
+
+.siman-94-page .theme-red {
+  background: var(--error-bg);
+  border-color: var(--error);
+  color: #991b1b;
 }
 
 .siman-94-page .result-header {
@@ -96,6 +214,47 @@
   gap: var(--space-md);
   margin-bottom: var(--space-xl);
 }
+
+.siman-94-page .result-header h3 {
+  text-transform: uppercase;
+  font-weight: 900;
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.siman-94-page .stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  font-size: 14px;
+}
+
+.siman-94-page .stat-row span:first-child {
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 800;
+  opacity: 0.7;
+}
+
+.siman-94-page .bold {
+  font-weight: 800;
+}
+
+.siman-94-page .result-alert {
+  background: rgba(255,255,255,0.5);
+  padding: var(--space-lg);
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: auto;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Logic panels */
 
 .siman-94-page .logic-grid {
   display: grid;
@@ -107,4 +266,24 @@
   .siman-94-page .logic-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.siman-94-page .logic-panel {
+  padding: var(--space-2xl);
+  border-radius: var(--radius-xl);
+}
+
+.siman-94-page .logic-panel.dark {
+  background: var(--slate-800);
+  color: #f1f5f9;
+}
+
+.siman-94-page .logic-panel.light {
+  background: #f0f4ff;
+  border: 1px solid #dbeafe;
+  color: #1e3a8a;
+}
+
+.siman-94-page .study-content {
+  font-size: 0.95rem;
 }
