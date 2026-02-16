@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Siman 96 — Davar Charif</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+Hebrew:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#fafaf9;
+  --surface:#ffffff;
+  --border:#e7e5e4;
+  --ink:#18181b;
+  --ink-light:#71717a;
+  --ink-lighter:#a1a1aa;
+  
+  --teal:#0f766e;
+  --teal-bg:#f0fdfa;
+  --teal-border:#99f6e4;
+  
+  --red:#b91c1c;
+  --red-bg:#fef2f2;
+  --red-border:#fecaca;
+  
+  --amber:#d97706;
+  --amber-bg:#fffbeb;
+  
+  --green:#15803d;
+  --green-bg:#f0fdf4;
+  
+  --gray:#52525b;
+  --gray-bg:#f4f4f5;
+  
+  --radius:8px;
+  --radius-sm:4px;
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding-bottom:2rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════ */
+header{
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  padding:1rem;
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.95);
+}
+
+.header-meta{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:var(--ink-lighter);
+  margin-bottom:6px;
+}
+
+.header-title{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:4px;
+}
+
+h1{
+  font-size:20px;
+  font-weight:700;
+  color:var(--ink);
+  letter-spacing:-0.02em;
+}
+
+.heb{
+  font-family:'Noto Serif Hebrew',serif;
+  font-weight:700;
+  color:var(--amber);
+  font-size:18px;
+  direction:rtl;
+}
+
+.subtitle{
+  font-size:13px;
+  color:var(--ink-light);
+  font-weight:400;
+  line-height:1.4;
+}
+
+/* ═══════════════════════════════════════════════════
+   CONTROLS - Mobile first
+   ═══════════════════════════════════════════════════ */
+.controls{
+  padding:1rem;
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+}
+
+.control-group{
+  margin-bottom:1rem;
+}
+
+.control-group:last-child{
+  margin-bottom:0;
+}
+
+.control-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:var(--ink-light);
+  font-weight:500;
+  margin-bottom:6px;
+  display:block;
+}
+
+.control-select{
+  appearance:none;
+  background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2371717a' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center;
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:11px 36px 11px 12px;
+  font-size:15px;
+  font-weight:500;
+  color:var(--ink);
+  cursor:pointer;
+  transition:all 0.15s ease;
+  width:100%;
+}
+
+.control-select:active{
+  background-color:#f4f4f5;
+}
+
+/* ═══════════════════════════════════════════════════
+   VERDICT HERO
+   ═══════════════════════════════════════════════════ */
+.verdict-hero{
+  padding:1rem;
+  margin:0 1rem 1rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:0 1px 2px rgba(0,0,0,0.05);
+}
+
+.verdict-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--border);
+}
+
+.verdict-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--ink-light);
+  font-weight:600;
+}
+
+.verdict-agreement{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  padding:3px 8px;
+  border-radius:10px;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:0.01em;
+}
+
+.verdict-agreement.agree{
+  background:var(--green-bg);
+  color:var(--green);
+}
+
+.verdict-agreement.disagree{
+  background:var(--red-bg);
+  color:var(--red);
+}
+
+.verdict-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+.verdict-col{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.verdict-posek{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:2px;
+}
+
+.verdict-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+.verdict-col.sa .verdict-dot{background:var(--teal)}
+.verdict-col.rama .verdict-dot{background:var(--red)}
+
+.verdict-name{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  font-weight:600;
+}
+
+.verdict-col.sa .verdict-name{color:var(--teal)}
+.verdict-col.rama .verdict-name{color:var(--red)}
+
+.verdict-heb{
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:13px;
+  font-weight:700;
+  direction:rtl;
+  opacity:0.5;
+  margin-top:-2px;
+}
+
+.verdict-result{
+  font-size:17px;
+  font-weight:700;
+  color:var(--ink);
+  letter-spacing:-0.01em;
+  line-height:1.3;
+}
+
+.verdict-context{
+  padding:10px;
+  background:var(--gray-bg);
+  border-radius:var(--radius-sm);
+  font-size:13px;
+  line-height:1.5;
+  color:var(--ink-light);
+}
+
+/* ═══════════════════════════════════════════════════
+   FOUNDATION
+   ═══════════════════════════════════════════════════ */
+.foundation{
+  padding:0 1rem;
+  margin-bottom:1rem;
+}
+
+.foundation-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-left:3px solid var(--amber);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 1px 2px rgba(0,0,0,0.05);
+}
+
+.foundation-toggle{
+  width:100%;
+  background:none;
+  border:none;
+  padding:12px 1rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  cursor:pointer;
+  text-align:left;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.foundation-toggle:active{
+  background:var(--gray-bg);
+}
+
+.foundation-toggle-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:1;
+  min-width:0;
+}
+
+.foundation-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--amber);
+  font-weight:600;
+  flex-shrink:0;
+}
+
+.foundation-title{
+  font-size:14px;
+  font-weight:600;
+  color:var(--ink);
+  line-height:1.3;
+}
+
+.foundation-chevron{
+  color:var(--ink-lighter);
+  transition:transform 0.2s ease;
+  font-size:13px;
+  flex-shrink:0;
+}
+
+.foundation-chevron.open{
+  transform:rotate(180deg);
+}
+
+.foundation-body{
+  padding:0 1rem 1rem;
+  display:none;
+  font-size:13px;
+  line-height:1.6;
+  color:var(--ink);
+}
+
+.foundation-body.open{
+  display:block;
+}
+
+.foundation-body p{
+  margin-bottom:10px;
+}
+
+.foundation-body p:last-child{
+  margin-bottom:0;
+}
+
+.foundation-body strong{
+  font-weight:600;
+}
+
+.foundation-body em{
+  font-style:italic;
+  color:var(--ink-light);
+}
+
+/* ═══════════════════════════════════════════════════
+   RULINGS - Mobile first
+   ═══════════════════════════════════════════════════ */
+.rulings{
+  padding:0 1rem 1rem;
+}
+
+.ruling-grid{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  opacity:1;
+  transition:opacity 0.2s ease;
+}
+
+.ruling-grid.fading{
+  opacity:0.4;
+}
+
+.ruling-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 1px 2px rgba(0,0,0,0.05);
+}
+
+.ruling-card.sa{border-top:3px solid var(--teal)}
+.ruling-card.rama{border-top:3px solid var(--red)}
+
+.ruling-header{
+  padding:12px 1rem;
+  background:var(--gray-bg);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.ruling-header-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+.ruling-card.sa .ruling-header-dot{background:var(--teal)}
+.ruling-card.rama .ruling-header-dot{background:var(--red)}
+
+.ruling-header-text{
+  flex:1;
+  min-width:0;
+}
+
+.ruling-header-name{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  font-weight:600;
+  display:block;
+  margin-bottom:2px;
+}
+
+.ruling-card.sa .ruling-header-name{color:var(--teal)}
+.ruling-card.rama .ruling-header-name{color:var(--red)}
+
+.ruling-header-heb{
+  font-family:'Noto Serif Hebrew',serif;
+  font-size:13px;
+  font-weight:700;
+  direction:rtl;
+  opacity:0.5;
+}
+
+.ruling-body{
+  padding:1rem;
+}
+
+.ruling-status{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 10px;
+  border-radius:var(--radius-sm);
+  font-size:12px;
+  font-weight:600;
+  margin-bottom:12px;
+  border:1px solid;
+}
+
+.status-mutar{
+  background:var(--green-bg);
+  color:var(--green);
+  border-color:rgba(21,128,61,0.2);
+}
+
+.status-assur{
+  background:var(--red-bg);
+  color:var(--red);
+  border-color:rgba(185,28,28,0.2);
+}
+
+.status-netila{
+  background:var(--amber-bg);
+  color:var(--amber);
+  border-color:rgba(217,119,6,0.2);
+}
+
+.status-sixty{
+  background:var(--red-bg);
+  color:var(--red);
+  border-color:rgba(185,28,28,0.2);
+}
+
+.status-two{
+  background:var(--gray-bg);
+  color:var(--gray);
+  border-color:rgba(82,82,91,0.2);
+}
+
+.ruling-text{
+  font-size:14px;
+  line-height:1.6;
+  color:var(--ink);
+  margin-bottom:12px;
+}
+
+.ruling-text strong{
+  font-weight:600;
+  color:var(--ink);
+}
+
+.opinion-card{
+  background:var(--gray-bg);
+  border-radius:var(--radius-sm);
+  padding:10px;
+  margin-bottom:10px;
+}
+
+.opinion-card:last-of-type{
+  margin-bottom:0;
+}
+
+.opinion-title{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--ink-light);
+  margin-bottom:5px;
+}
+
+.opinion-text{
+  font-size:13px;
+  line-height:1.5;
+  color:var(--ink-light);
+}
+
+.opinion-text strong{
+  color:var(--ink);
+  font-weight:600;
+}
+
+.action-box{
+  margin-top:1rem;
+  padding:12px;
+  background:var(--gray-bg);
+  border-radius:var(--radius-sm);
+  border-left:3px solid;
+}
+
+.ruling-card.sa .action-box{border-left-color:var(--teal)}
+.ruling-card.rama .action-box{border-left-color:var(--red)}
+
+.action-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  font-weight:600;
+  margin-bottom:6px;
+  display:block;
+}
+
+.ruling-card.sa .action-label{color:var(--teal)}
+.ruling-card.rama .action-label{color:var(--red)}
+
+.action-text{
+  font-size:13px;
+  line-height:1.5;
+  color:var(--ink);
+}
+
+.action-text strong{
+  font-weight:600;
+}
+
+/* ═══════════════════════════════════════════════════
+   LAMDUS
+   ═══════════════════════════════════════════════════ */
+.lamdus{
+  padding:0 1rem 1.5rem;
+}
+
+.lamdus-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 1px 2px rgba(0,0,0,0.05);
+}
+
+.lamdus-header{
+  padding:12px 1rem;
+  background:var(--gray-bg);
+  border-bottom:1px solid var(--border);
+}
+
+.lamdus-title{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--ink-light);
+  font-weight:600;
+}
+
+.lamdus-body{
+  padding:1rem;
+}
+
+.lamdus-gem{
+  font-weight:700;
+  font-size:15px;
+  color:var(--amber);
+  margin-bottom:10px;
+  display:block;
+}
+
+.lamdus-text{
+  font-size:14px;
+  line-height:1.6;
+  color:var(--ink);
+}
+
+.lamdus-text strong{
+  font-weight:600;
+}
+
+.lamdus-text em{
+  font-style:italic;
+  color:var(--ink-light);
+}
+
+.lamdus-sources{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid var(--border);
+}
+
+.source-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  padding:4px 8px;
+  background:var(--gray-bg);
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--ink-light);
+}
+
+/* ═══════════════════════════════════════════════════
+   TABLET+ RESPONSIVE (min 640px)
+   ═══════════════════════════════════════════════════ */
+@media(min-width:640px){
+  header{
+    padding:1.25rem 1.5rem;
+  }
+  
+  h1{font-size:24px}
+  .heb{font-size:22px}
+  .subtitle{font-size:14px}
+  
+  .controls{
+    padding:1.25rem 1.5rem;
+  }
+  
+  .controls-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:1rem;
+  }
+  
+  .control-group{
+    margin-bottom:0;
+  }
+  
+  .verdict-hero{
+    padding:1.5rem;
+    margin:0 1.5rem 1.5rem;
+  }
+  
+  .verdict-header{
+    margin-bottom:16px;
+    padding-bottom:12px;
+  }
+  
+  .verdict-grid{
+    gap:16px;
+    margin-bottom:16px;
+  }
+  
+  .verdict-result{
+    font-size:20px;
+  }
+  
+  .verdict-context{
+    padding:12px;
+    font-size:14px;
+  }
+  
+  .foundation{
+    padding:0 1.5rem;
+    margin-bottom:1.5rem;
+  }
+  
+  .foundation-toggle{
+    padding:16px 1.25rem;
+  }
+  
+  .foundation-body{
+    padding:0 1.25rem 1.25rem;
+    font-size:14px;
+  }
+  
+  .rulings{
+    padding:0 1.5rem 1.5rem;
+  }
+  
+  .ruling-header{
+    padding:14px 1.25rem;
+  }
+  
+  .ruling-body{
+    padding:1.25rem;
+  }
+  
+  .lamdus{
+    padding:0 1.5rem 2rem;
+  }
+  
+  .lamdus-header{
+    padding:14px 1.25rem;
+  }
+  
+  .lamdus-body{
+    padding:1.25rem;
+  }
+  
+  .lamdus-gem{
+    font-size:16px;
+    margin-bottom:12px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   DESKTOP (min 900px) - Side-by-side rulings
+   ═══════════════════════════════════════════════════ */
+@media(min-width:900px){
+  .ruling-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-meta">Y.D. · Siman 96 · SCP Shiur #15</div>
+  <div class="header-title">
+    <h1>Davar Charif</h1>
+    <span class="heb">סימן צ״ו</span>
+  </div>
+  <div class="subtitle">Sharp foods cut with meat/dairy knives — When does the food become forbidden?</div>
+</header>
+
+<div class="controls">
+  <div class="controls-grid">
+    <div class="control-group">
+      <label class="control-label">Knife Type</label>
+      <select class="control-select" id="type" onchange="update()">
+        <option value="meat">Meat Knife (בשרי)</option>
+        <option value="dairy">Dairy Knife (חלבי)</option>
+        <option value="treif">Non-Kosher Knife (טרף)</option>
+        <option value="pareve">Pareve Knife (פרווה)</option>
+      </select>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Ben Yomo Status</label>
+      <select class="control-select" id="by" onchange="update()">
+        <option value="yes">Ben Yomo (used within 24h)</option>
+        <option value="no">Eino Ben Yomo (24h+ since use)</option>
+      </select>
+    </div>
+    <div class="control-group">
+      <label class="control-label">Knife Condition</label>
+      <select class="control-select" id="clean" onchange="update()">
+        <option value="yes">Clean (no visible residue)</option>
+        <option value="no">Dirty (has visible residue)</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="foundation">
+  <div class="foundation-card">
+    <button class="foundation-toggle" onclick="toggleFoundation()" aria-expanded="false">
+      <div class="foundation-toggle-left">
+        <span class="foundation-label">Background</span>
+        <span class="foundation-title">Two Core Machloket in Siman 96</span>
+      </div>
+      <span class="foundation-chevron" id="chevron">▼</span>
+    </button>
+    <div class="foundation-body" id="foundation-body">
+      <p><strong>Machloket #1 — Does Eino Ben Yomo forbid a Davar Charif?</strong><br>
+      מהר״ם & רבינו יחיאל: Only חלתית reawakens Eino Ben Yomo flavor — all other sharp foods only absorb from a Ben Yomo knife. רבינו ברוך & תרומה: <em>All</em> sharp foods reawaken even Eino Ben Yomo flavor. <strong>Rama rules like רבינו ברוך.</strong></p>
+      
+      <p><strong>Machloket #2 — How far does absorbed flavor travel?</strong><br>
+      ראב״ד: Only a <em>כדי נטילה</em> (fingerbreadth, larger than כדי קליפה). רשב״א: Throughout the <em>entire</em> food. <strong>S"A rules like ראב״ד; Rama rules like רשב״א l'chatchila.</strong></p>
+      
+      <p><strong>Why sharp foods reawaken Eino Ben Yomo:</strong> <em>אגב חורפיה מחליא ליה לשבח</em> — the pungency restores rancid (pagum) taste to potency, removing the foundation of the Eino Ben Yomo leniency.</p>
+    </div>
+  </div>
+</div>
+
+<div class="verdict-hero">
+  <div class="verdict-header">
+    <span class="verdict-label">Verdict</span>
+    <span class="verdict-agreement" id="agreement">—</span>
+  </div>
+  <div class="verdict-grid">
+    <div class="verdict-col sa">
+      <div class="verdict-posek">
+        <span class="verdict-dot"></span>
+        <div>
+          <span class="verdict-name">Shulchan Aruch</span>
+          <span class="verdict-heb">שׁוּלְחָן עָרוּךְ</span>
+        </div>
+      </div>
+      <div class="verdict-result" id="sa-verdict">—</div>
+    </div>
+    <div class="verdict-col rama">
+      <div class="verdict-posek">
+        <span class="verdict-dot"></span>
+        <div>
+          <span class="verdict-name">Rama</span>
+          <span class="verdict-heb">רְמָ״א</span>
+        </div>
+      </div>
+      <div class="verdict-result" id="rama-verdict">—</div>
+    </div>
+  </div>
+  <div class="verdict-context" id="context"></div>
+</div>
+
+<div class="rulings">
+  <div class="ruling-grid" id="ruling-grid">
+    <!-- Dynamically populated -->
+  </div>
+</div>
+
+<div class="lamdus">
+  <div class="lamdus-card">
+    <div class="lamdus-header">
+      <span class="lamdus-title">Key Insight</span>
+    </div>
+    <div class="lamdus-body" id="lamdus-body">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+</div>
+
+<script>
+const state = {type:'meat',by:'yes',clean:'yes'};
+
+function update(){
+  state.type = document.getElementById('type').value;
+  state.by = document.getElementById('by').value;
+  state.clean = document.getElementById('clean').value;
+  render();
+}
+
+function toggleFoundation(){
+  const body = document.getElementById('foundation-body');
+  const chevron = document.getElementById('chevron');
+  const isOpen = body.classList.toggle('open');
+  chevron.classList.toggle('open',isOpen);
+}
+
+function getData(){
+  const{type,by,clean}=state;
+
+  if(type==='pareve')return{
+    agree:true,
+    saV:'Permitted',ramaV:'Permitted',
+    context:'A pareve knife has no meat or dairy absorption. The sharp food remains fully pareve — no issue arises.',
+    sa:{
+      status:'mutar',
+      text:'No beli\'ah of meat or dairy exists in a pareve knife. The sharp food remains <strong>fully pareve</strong> and may be used with either meat or dairy.',
+      opinions:[],
+      action:'None required. The food is completely permitted.'
+    },
+    rama:{
+      status:'mutar',
+      text:'Agrees fully. Since there is no meat or dairy absorption in the knife, the machloket about Eino Ben Yomo and flavor travel distance do not apply. The sharp food is <strong>fully pareve</strong>.',
+      opinions:[],
+      action:'None required. The food is completely permitted.'
+    },
+    lam:{
+      title:'🔑 L\'chatchila Solution',
+      body:'<strong>Designate a pareve knife for cutting all sharp foods</strong> (onions, garlic, radishes, lemons, etc.). This prevents the entire sugya from arising and is the ideal solution recommended by תשובות והנהגות (ח״א-תלג). Most common halachic issues in modern kitchens can be avoided through this simple practice.',
+      sources:['Y.D. 96:1-2','תשובות והנהגות ח״א-תלג']
+    }
+  };
+
+  if(type==='treif')return{
+    agree:true,
+    saV:'Forbidden',ramaV:'Forbidden',
+    context:'The entire sharp food is forbidden. Ben Yomo status and knife cleanliness are irrelevant — all Rishonim agree the food is non-kosher.',
+    sa:{
+      status:'assur',
+      text:'From משנה עבודה זרה (לה:): the sharp food\'s sharpness combined with <em>Duchka d\'Sakina</em> (knife pressure) revives the non-kosher taste absorbed in the knife. <strong>The entire food is forbidden.</strong> Partial removal (כדי נטילה) does not help since the issur itself is forbidden, not merely meat vs. dairy.',
+      opinions:[],
+      action:'<strong>Discard the entire food.</strong> If already cooked into a larger dish, consult a competent Rav for sha\'alat chacham.'
+    },
+    rama:{
+      status:'assur',
+      text:'Agrees completely. The two machloket about Eino Ben Yomo reawakening and flavor travel distance <strong>do not apply</strong> to non-kosher knives. Even according to מהר״ם (who is lenient with Eino Ben Yomo for kosher meat/dairy), a non-kosher knife forbids the entire food regardless of Ben Yomo status.',
+      opinions:[],
+      action:'<strong>Same as S"A</strong> — the entire food is forbidden and must be discarded.'
+    },
+    lam:{
+      title:'📖 Origin in Gemara',
+      body:'The Davar Charif principle originates in the Gemara (עבודה זרה לה:, חולין קיא:) specifically discussing a <strong>non-kosher knife</strong>. This is the clearest case where all opinions converge. The Rishonim then extended the principle to kosher meat/dairy knives, where the machloket arose. With non-kosher knives, there is universal agreement: the sharpness + pressure reawaken and absorb the forbidden taste.',
+      sources:['A.Z. 35b','Chullin 111b','Y.D. 96:1','Rashi on Chullin 111b']
+    }
+  };
+
+  const ts=type==='meat'?'meat':'dairy';
+  const opp=type==='meat'?'dairy':'meat';
+
+  if(clean==='no')return{
+    agree:true,
+    saV:'Needs 60×',ramaV:'Needs 60×',
+    context:'Actual residue (not just absorbed taste) transfers into the food through cutting pressure. This bypasses all leniencies — 60× is required.',
+    sa:{
+      status:'sixty',
+      text:'A dirty knife transfers <strong>actual substance</strong> (fat/residue) directly into the food via cutting pressure. This is not merely absorbed <em>ta\'am</em> but actual forbidden matter. Removing a כדי נטילה cannot fix this. If the food was cooked with '+opp+', you need <strong>60× against the knife\'s volume</strong> (specifically against the part that touched the food, if smaller than כדי נטילה).',
+      opinions:[],
+      action:'<strong>L\'chatchila:</strong> Do not use this food with '+opp+'. <strong>B\'dieved</strong> (already cooked): Needs 60× against the knife volume (or כדי נטילה, whichever is smaller).'
+    },
+    rama:{
+      status:'sixty',
+      text:'Agrees that actual residue requires 60×. The Taz (96:1) adds a critical preventive rule: <strong>Wipe your knife before cutting any Davar Charif.</strong> One simple wipe = the difference between a כדי נטילה problem (fixable) and a 60× problem (much more serious).',
+      opinions:[],
+      action:'<strong>Same as S"A.</strong> If cooked with '+opp+': needs 60×. <strong>Prevention:</strong> Always wipe knives before cutting sharp foods.'
+    },
+    lam:{
+      title:'Taz\'s Golden Rule (96:1)',
+      body:'<strong>Before cutting any Davar Charif with a meat or dairy knife, wipe the blade clean.</strong> This is perhaps the most practical rule in the entire siman. The difference is enormous:<br><br><strong>Clean knife:</strong> Only absorbed taste transfers → fixable with כדי נטילה removal<br><strong>Dirty knife:</strong> Actual fat/substance transfers → requires 60× wherever cooked<br><br>One wipe prevents countless halachic problems.',
+      sources:['Y.D. 96:1','Taz 96:1','Shach 96:3']
+    }
+  };
+
+  if(by==='yes')return{
+    agree:false,
+    saV:'Remove כדי נטילה',ramaV:'Entire food forbidden',
+    context:'Both require action, but differ on scope. S"A (following ראב״ד): remove fingerbreadth. Rama (following רשב״א): entire food forbidden l\'chatchila.',
+    sa:{
+      status:'netila',
+      text:'<em>Duchka d\'Sakina</em> (knife pressure) combined with the food\'s sharpness squeezes absorbed taste from the knife into the food. According to <strong>ראב״ד</strong>, this flavor travels only a <strong>כדי נטילה</strong> (fingerbreadth) from the cut surface. Remove that portion. The remainder has <strong>'+ts+' status</strong> (not pareve) but is permitted.',
+      opinions:[],
+      action:'<strong>Remove the outer fingerbreadth</strong> from where the knife cut. The remainder is '+ts+' (may not be eaten with '+opp+'). <strong>B\'dieved:</strong> If already cooked with '+opp+' without removing: needs 60× against the כדי נטילה portion.'
+    },
+    rama:{
+      status:'netila',
+      text:'L\'chatchila follows <strong>רשב״א</strong>: the absorbed flavor travels <strong>throughout the entire food</strong>. The whole onion/radish is forbidden l\'chatchila, not just a fingerbreadth. Only <strong>b\'dieved</strong> (already cooked) do we rely on the lenient opinion of ראב״ד and permit after removing a כדי נטילה.',
+      opinions:[],
+      action:'<strong>L\'chatchila:</strong> Entire food may not be eaten with '+opp+'. <strong>B\'dieved:</strong> If already cooked, remove כדי נטילה — remainder is '+ts+'.'
+    },
+    lam:{
+      title:'Status & Waiting Period',
+      body:'Two critical points about the food after removing the כדי נטילה:<br><br><strong>1. Food status:</strong> The remainder is <strong>'+ts+'</strong>, not pareve. It absorbed meat/dairy ta\'am and cannot be eaten with '+opp+'.<br><br><strong>2. No waiting required:</strong> You do <em>not</em> need to wait 6 hours after eating this food (ספר דבר חריף פ״א-י based on רע״א). The two reasons for waiting — meat stuck in teeth and lingering flavor in the mouth — do not apply. Only absorbed <em>ta\'am</em> transferred from the knife, not actual meat substance.',
+      sources:['Y.D. 96:1','ראב״ד','רשב״א','ר״ע אייגר','ספר דבר חריף פ״א-י']
+    }
+  };
+
+  /* EINO BEN YOMO · CLEAN — the central machloket */
+  return{
+    agree:false,
+    saV:'Two opinions (lenient)',ramaV:'Entire food forbidden',
+    context:'The heart of the sugya. Two machloket converge. Sephardim follow lenient S"A (מהר״ם). Ashkenazim follow strict Rama (רבינו ברוך + רשב״א).',
+    sa:{
+      status:'two',
+      text:'The S"A (סעיף א׳) presents <strong>two opinions</strong> without definitively ruling. Sephardim follow the first (סתם) opinion:',
+      opinions:[
+        {
+          title:'Opinion 1 · מהר״ם & רבינו יחיאל (S"A\'s primary view)',
+          text:'Only <strong>חלתית</strong> (specific sharp vegetable unknown today) can reawaken Eino Ben Yomo flavor. All other sharp foods (onion, garlic, radish) only absorb from a Ben Yomo knife. With an Eino Ben Yomo knife: <strong>the food is completely permitted</strong> — no removal needed.'
+        },
+        {
+          title:'Opinion 2 · רבינו ברוך & תרומה (quoted as יש אומרים)',
+          text:'<strong>All sharp foods</strong> reawaken and absorb even Eino Ben Yomo flavor. Need to remove <strong>כדי נטילה</strong> (per ראב״ד — flavor travels that distance).'
+        }
+      ],
+      action:'<strong>Sephardim:</strong> Follow Opinion 1 (מהר״ם) — Eino Ben Yomo + clean = permitted, no action needed. <strong>B\'sha\'at hadechak:</strong> If already mixed, may rely on lenient view.'
+    },
+    rama:{
+      status:'assur',
+      text:'The Rama (סעיף ג׳) rules <strong>strictly on both machloket</strong>, combining the stringent opinions:',
+      opinions:[
+        {
+          title:'Machloket #1 — Rules like רבינו ברוך',
+          text:'<strong>All sharp foods</strong> (not just חלתית) reawaken even Eino Ben Yomo flavor. The absorbed taste that has gone rancid (pagum) is restored to potency by the food\'s sharpness (<em>agav churpei machleya lei l\'shvach</em>). An Eino Ben Yomo knife is treated <strong>exactly like Ben Yomo</strong>.'
+        },
+        {
+          title:'Machloket #2 — Rules like רשב״א l\'chatchila',
+          text:'L\'chatchila, absorbed flavor travels <strong>throughout the entire food</strong>, not just a כדי נטילה. The whole onion/radish is forbidden l\'chatchila. Only b\'dieved (already cooked): rely on ראב״ד\'s lenient view of כדי נטילה.'
+        }
+      ],
+      action:'<strong>L\'chatchila:</strong> Entire food may not be eaten with '+opp+'. <strong>B\'dieved</strong> (already cooked): Remove כדי נטילה; the mixture needs 60× if fully combined.'
+    },
+    lam:{
+      title:'Why Rama is Strict on Both',
+      body:'The Rama\'s double stringency makes sense:<br><br><strong>On Machloket #1 (Eino Ben Yomo):</strong> The Eino Ben Yomo leniency assumes absorbed taste has become <em>pagum</em> (rancid/spoiled) and is halachically ignored. But the sharp food\'s <strong>entire mechanism</strong> — <em>אגב חורפיה מחליא ליה לשבח</em> — is that pungency restores even rancid taste to full potency. The very condition protecting us is exactly what the Davar Charif neutralizes. רבינו ברוך extends this to all sharp foods, not just חלתית.<br><br><strong>On Machloket #2 (Travel distance):</strong> רשב״א holds the sharp food\'s pungency distributes absorbed taste throughout. ראב״ד holds <em>Duchka d\'Sakina</em> is localized — can only push taste one fingerbreadth deep. Rama follows רשב״א l\'chatchila as the safer position.',
+      sources:['Y.D. 96:1','Rama 96:3','רבינו ברוך','רשב״א','ראב״ד','Shach 96:6','בית יוסף']
+    }
+  };
+}
+
+function rulingCard(data,name,cls){
+  const opinions=data.opinions.map(o=>`
+    <div class="opinion-card">
+      <div class="opinion-title">${o.title}</div>
+      <div class="opinion-text">${o.text}</div>
+    </div>
+  `).join('');
+  
+  return`<div class="ruling-card ${cls}">
+    <div class="ruling-header">
+      <span class="ruling-header-dot"></span>
+      <div class="ruling-header-text">
+        <span class="ruling-header-name">${name}</span>
+        <span class="ruling-header-heb">${cls==='sa'?'שׁוּלְחָן עָרוּךְ':'רְמָ״א'}</span>
+      </div>
+    </div>
+    <div class="ruling-body">
+      <span class="ruling-status status-${data.status}">${getStatusLabel(data.status)}</span>
+      <div class="ruling-text">${data.text}</div>
+      ${opinions}
+      <div class="action-box">
+        <span class="action-label">Required Action</span>
+        <div class="action-text">${data.action}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function getStatusLabel(status){
+  const labels={
+    mutar:'✓ Permitted',
+    assur:'✗ Forbidden',
+    netila:'⊘ Remove כדי נטילה',
+    sixty:'× Needs 60×',
+    two:'⚖ Two Opinions'
+  };
+  return labels[status]||'—';
+}
+
+let fadeTimeout;
+function render(){
+  const data=getData();
+  
+  // Update verdict hero
+  document.getElementById('sa-verdict').textContent=data.saV;
+  document.getElementById('rama-verdict').textContent=data.ramaV;
+  document.getElementById('context').textContent=data.context;
+  
+  const agreement=document.getElementById('agreement');
+  agreement.className='verdict-agreement '+(data.agree?'agree':'disagree');
+  agreement.textContent=data.agree?'✓ Agree':'⚠ Disagree';
+  
+  // Fade and update rulings
+  const grid=document.getElementById('ruling-grid');
+  grid.classList.add('fading');
+  
+  clearTimeout(fadeTimeout);
+  fadeTimeout=setTimeout(()=>{
+    grid.innerHTML=rulingCard(data.sa,'Shulchan Aruch','sa')+rulingCard(data.rama,'Rama','rama');
+    
+    // Update lamdus
+    const sources=data.lam.sources.map(s=>`<span class="source-tag">${s}</span>`).join('');
+    document.getElementById('lamdus-body').innerHTML=`
+      <span class="lamdus-gem">${data.lam.title}</span>
+      <div class="lamdus-text">${data.lam.body}</div>
+      ${sources?`<div class="lamdus-sources">${sources}</div>`:''}
+    `;
+    
+    grid.classList.remove('fading');
+  },200);
+}
+
+render();
+</script>
+
+</body>
+</html>
