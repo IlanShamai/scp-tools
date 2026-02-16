@@ -9,39 +9,60 @@ extra_head: |
 
 <div class="siman-96-page">
 <header>
-  <div class="header-meta">Y.D. · Siman 96 · SCP Shiur #15</div>
   <div class="header-title">
     <h1>Davar Charif</h1>
     <span class="heb">סימן צ״ו</span>
   </div>
-  <div class="subtitle">Sharp foods cut with meat/dairy knives — When does the food become forbidden?</div>
+  <p class="subtitle">Sharp foods (onion, garlic, radish, sour fruits, very salty fish) cut with meat/dairy knives — when is the food forbidden?</p>
 </header>
 
 <div class="controls">
-  <div class="controls-grid">
-    <div class="control-group">
-      <label class="control-label">Knife Type</label>
-      <select class="control-select" id="type" onchange="update()">
-        <option value="meat">Meat Knife (בשרי)</option>
-        <option value="dairy">Dairy Knife (חלבי)</option>
-        <option value="treif">Non-Kosher Knife (טרף)</option>
-        <option value="pareve">Pareve Knife (פרווה)</option>
-      </select>
+  <p class="controls-intro">Select your scenario:</p>
+  <div class="control-pills">
+    <div class="control-set">
+      <span class="control-label">Knife</span>
+      <div class="pill-row" role="group" aria-label="Knife type">
+        <button type="button" class="pill pill-meat-dairy" id="meat-dairy-btn" data-type="meat" aria-pressed="true">Meat</button>
+        <button type="button" class="pill" data-type="treif">Treif</button>
+        <button type="button" class="pill" data-type="pareve">Pareve</button>
+      </div>
     </div>
-    <div class="control-group">
-      <label class="control-label">Ben Yomo Status</label>
-      <select class="control-select" id="by" onchange="update()">
-        <option value="yes">Ben Yomo (used within 24h)</option>
-        <option value="no">Eino Ben Yomo (24h+ since use)</option>
-      </select>
+    <div class="control-set">
+      <span class="control-label">Ben Yomo <span class="hint">(used &lt;24h)</span></span>
+      <div class="pill-row" role="group" aria-label="Ben Yomo status">
+        <button type="button" class="pill" data-by="yes" aria-pressed="true">Yes</button>
+        <button type="button" class="pill" data-by="no">No</button>
+      </div>
     </div>
-    <div class="control-group">
-      <label class="control-label">Knife Condition</label>
-      <select class="control-select" id="clean" onchange="update()">
-        <option value="yes">Clean (no visible residue)</option>
-        <option value="no">Dirty (has visible residue)</option>
-      </select>
+    <div class="control-set">
+      <span class="control-label">Knife clean?</span>
+      <div class="pill-row" role="group" aria-label="Knife condition">
+        <button type="button" class="pill" data-clean="yes" aria-pressed="true">Yes</button>
+        <button type="button" class="pill" data-clean="no">No</button>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="quick-answer" id="quick-answer">
+  <span class="quick-icon" id="quick-icon"></span>
+  <div class="quick-content">
+    <p class="quick-text" id="quick-text">—</p>
+    <p class="quick-context" id="quick-context"></p>
+  </div>
+</div>
+
+<div class="rulings">
+  <div class="ruling-grid" id="ruling-grid"></div>
+</div>
+
+<div class="lamdus">
+  <div class="lamdus-card">
+    <button class="lamdus-toggle" onclick="toggleLamdus()" aria-expanded="false">
+      <span class="lamdus-title">Key insight</span>
+      <span class="lamdus-chevron" id="lamdus-chevron">▼</span>
+    </button>
+    <div class="lamdus-body" id="lamdus-body"></div>
   </div>
 </div>
 
@@ -66,61 +87,51 @@ extra_head: |
   </div>
 </div>
 
-<div class="verdict-hero">
-  <div class="verdict-header">
-    <span class="verdict-label">Verdict</span>
-    <span class="verdict-agreement" id="agreement">—</span>
-  </div>
-  <div class="verdict-grid">
-    <div class="verdict-col sa">
-      <div class="verdict-posek">
-        <span class="verdict-dot"></span>
-        <div>
-          <span class="verdict-name">Shulchan Aruch</span>
-          <span class="verdict-heb">שׁוּלְחָן עָרוּךְ</span>
-        </div>
-      </div>
-      <div class="verdict-result" id="sa-verdict">—</div>
-    </div>
-    <div class="verdict-col rama">
-      <div class="verdict-posek">
-        <span class="verdict-dot"></span>
-        <div>
-          <span class="verdict-name">Rama</span>
-          <span class="verdict-heb">רְמָ״א</span>
-        </div>
-      </div>
-      <div class="verdict-result" id="rama-verdict">—</div>
-    </div>
-  </div>
-  <div class="verdict-context" id="context"></div>
-</div>
-
-<div class="rulings">
-  <div class="ruling-grid" id="ruling-grid">
-    <!-- Dynamically populated -->
-  </div>
-</div>
-
-<div class="lamdus">
-  <div class="lamdus-card">
-    <div class="lamdus-header">
-      <span class="lamdus-title">Key Insight</span>
-    </div>
-    <div class="lamdus-body" id="lamdus-body">
-      <!-- Dynamically populated -->
-    </div>
-  </div>
-</div>
-
 <script>
 const state = {type:'meat',by:'yes',clean:'yes'};
 
 function update(){
-  state.type = document.getElementById('type').value;
-  state.by = document.getElementById('by').value;
-  state.clean = document.getElementById('clean').value;
   render();
+}
+
+function initPills(){
+  const meatDairyBtn=document.getElementById('meat-dairy-btn');
+  meatDairyBtn.onclick=()=>{
+    if(state.type==='meat'||state.type==='dairy'){
+      state.type=state.type==='meat'?'dairy':'meat';
+    }else{
+      state.type='meat';
+    }
+    document.querySelectorAll('.pill[data-type]').forEach(b=>{
+      b.setAttribute('aria-pressed',(b===meatDairyBtn&&(state.type==='meat'||state.type==='dairy'))||(b.dataset.type===state.type));
+    });
+    render();
+  };
+  document.querySelectorAll('.pill[data-type]').forEach(btn=>{
+    if(btn===meatDairyBtn)return;
+    btn.onclick=()=>{ state.type=btn.dataset.type; document.querySelectorAll('.pill[data-type]').forEach(b=>{ b.setAttribute('aria-pressed',(b===meatDairyBtn&&(state.type==='meat'||state.type==='dairy'))||(b.dataset.type===state.type)); }); render(); };
+  });
+  document.querySelectorAll('.pill[data-by]').forEach(btn=>{
+    btn.onclick=()=>{ state.by=btn.dataset.by; document.querySelectorAll('.pill[data-by]').forEach(b=>b.setAttribute('aria-pressed',b===btn)); render(); };
+  });
+  document.querySelectorAll('.pill[data-clean]').forEach(btn=>{
+    btn.onclick=()=>{ state.clean=btn.dataset.clean; document.querySelectorAll('.pill[data-clean]').forEach(b=>b.setAttribute('aria-pressed',b===btn)); render(); };
+  });
+}
+
+function setPillStates(){
+  const meatDairyBtn=document.getElementById('meat-dairy-btn');
+  if(meatDairyBtn){
+    meatDairyBtn.textContent=state.type==='meat'?'Meat':state.type==='dairy'?'Dairy':'Meat/Dairy';
+    meatDairyBtn.dataset.type=state.type==='meat'||state.type==='dairy'?state.type:'meat';
+    meatDairyBtn.setAttribute('aria-pressed',state.type==='meat'||state.type==='dairy');
+  }
+  document.querySelectorAll('.pill[data-type]').forEach(b=>{
+    if(b===meatDairyBtn)return;
+    b.setAttribute('aria-pressed',b.dataset.type===state.type);
+  });
+  document.querySelectorAll('.pill[data-by]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.by===state.by));
+  document.querySelectorAll('.pill[data-clean]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.clean===state.clean));
 }
 
 function toggleFoundation(){
@@ -130,13 +141,22 @@ function toggleFoundation(){
   chevron.classList.toggle('open',isOpen);
 }
 
+function toggleLamdus(){
+  const body = document.getElementById('lamdus-body');
+  const chevron = document.getElementById('lamdus-chevron');
+  const btn = body.previousElementSibling;
+  const isOpen = body.classList.toggle('open');
+  chevron.classList.toggle('open',isOpen);
+  if(btn) btn.setAttribute('aria-expanded',isOpen);
+}
+
 function getData(){
   const{type,by,clean}=state;
 
   if(type==='pareve')return{
     agree:true,
-    saV:'Permitted',ramaV:'Permitted',
-    context:'A pareve knife has no meat or dairy absorption. The sharp food remains fully pareve — no issue arises.',
+    shortSummary:'No issue — food stays pareve.',
+    context:'No meat or dairy absorption in a pareve knife.',
     sa:{
       status:'mutar',
       text:'No beli\'ah of meat or dairy exists in a pareve knife. The sharp food remains <strong>fully pareve</strong> and may be used with either meat or dairy.',
@@ -156,36 +176,60 @@ function getData(){
     }
   };
 
-  if(type==='treif')return{
-    agree:true,
-    saV:'Forbidden',ramaV:'Forbidden',
-    context:'The entire sharp food is forbidden. Ben Yomo status and knife cleanliness are irrelevant — all Rishonim agree the food is non-kosher.',
-    sa:{
-      status:'assur',
-      text:'From משנה עבודה זרה (לה:): the sharp food\'s sharpness combined with <em>Duchka d\'Sakina</em> (knife pressure) revives the non-kosher taste absorbed in the knife. <strong>The entire food is forbidden.</strong> Partial removal (כדי נטילה) does not help since the issur itself is forbidden, not merely meat vs. dairy.',
-      opinions:[],
-      action:'<strong>Discard the entire food.</strong> If already cooked into a larger dish, consult a competent Rav for sha\'alat chacham.'
-    },
-    rama:{
-      status:'assur',
-      text:'Agrees completely. The two machloket about Eino Ben Yomo reawakening and flavor travel distance <strong>do not apply</strong> to non-kosher knives. Even according to מהר״ם (who is lenient with Eino Ben Yomo for kosher meat/dairy), a non-kosher knife forbids the entire food regardless of Ben Yomo status.',
-      opinions:[],
-      action:'<strong>Same as S"A</strong> — the entire food is forbidden and must be discarded.'
-    },
-    lam:{
-      title:'📖 Origin in Gemara',
-      body:'The Davar Charif principle originates in the Gemara (עבודה זרה לה:, חולין קיא:) specifically discussing a <strong>non-kosher knife</strong>. This is the clearest case where all opinions converge. The Rishonim then extended the principle to kosher meat/dairy knives, where the machloket arose. With non-kosher knives, there is universal agreement: the sharpness + pressure reawaken and absorb the forbidden taste.',
-      sources:['A.Z. 35b','Chullin 111b','Y.D. 96:1','Rashi on Chullin 111b']
-    }
-  };
+  if(type==='treif'){
+    if(by==='no')return{
+      agree:false,
+      shortSummary:'S"A: Permitted.<br>Rama: Entire food forbidden.',
+      context:'S"A (like מהר״ם): Eino Ben Yomo non-kosher flavor doesn\'t transfer to sharp foods. Rama: applies chanan to all prohibitions.',
+      sa:{
+        status:'mutar',
+        text:'The S"A holds that an <strong>Eino Ben Yomo</strong> non-kosher knife does not transfer flavor to sharp foods — similar to the מהר״ם view for meat/dairy. The sharpness only reawakens Ben Yomo absorbed taste.',
+        opinions:[],
+        action:'<strong>Permitted</strong> — can use all of it.'
+      },
+      rama:{
+        status:'assur',
+        text:'The Rama applies <strong>chanan</strong> to all prohibitions (ש״ך (ט)). When you cut with a non-kosher knife, each piece becomes chanan from the forbidden flavor — the entire food is forbidden regardless of Ben Yomo.',
+        opinions:[],
+        action:'<strong>Discard the entire food.</strong> If already cooked (b\'dieved): need 60× against the forbidden portion (כדי נטילה or entire food if diced) — ask a Rav.',
+      },
+      lam:{
+        title:'📖 Origin in Gemara',
+        body:'The Davar Charif principle originates in the Gemara (עבודה זרה לה:, חולין קיא:) discussing a <strong>non-kosher knife</strong>. The S"A distinguishes Ben Yomo vs Eino Ben Yomo; the Rama is stringent in both cases due to chanan. When diced, each piece becomes chanan — entire food forbidden.<br><br><strong>Store-bought cut sharp foods:</strong> If uncertain whether a non-kosher knife was used, permitted. If certain non-kosher knife was used, remove כדי נטילה (Rama end of 96:1, ט״ז ח).',
+        sources:['A.Z. 35b','Chullin 111b','Y.D. 96:1','Shach 96:9']
+      }
+    };
+    return{
+      agree:false,
+      shortSummary:'S"A: Remove כדי נטילה or need 60×.<br>Rama: Entire food forbidden.',
+      context:'S"A: Remove the portion that touched the blade (or need shishim if cooked). Rama: chanan applies — entire food forbidden.',
+      sa:{
+        status:'netila',
+        text:'From משנה עבודה זרה (לה:): the sharp food\'s sharpness combined with <em>Duchka d\'Sakina</em> revives the non-kosher taste. The S"A holds you need <strong>shishim against the part that touched the blade</strong> (or the כדי נטילה — the smaller of the two, per ש״ך (ז)). The S"A does not apply chanan; the radish only absorbs flavor from the knife contact area.',
+        opinions:[],
+        action:'<strong>Remove the כדי נטילה</strong> from the area that was sliced. <strong>If already cooked:</strong> Need 60× against the blade or כדי נטילה (whichever is smaller).'
+      },
+      rama:{
+        status:'assur',
+        text:'The Rama applies <strong>chanan</strong> to all prohibitions (ש״ך (ט)). When you cut with a non-kosher knife, each piece becomes chanan from the forbidden flavor — the entire food is forbidden. If diced into small pieces, the entire radish is forbidden because each piece becomes chanan.',
+        opinions:[],
+        action:'<strong>Discard the entire food.</strong> If already cooked (b\'dieved): need 60× against the forbidden portion (כדי נטילה or entire food if diced) — ask a Rav.',
+      },
+      lam:{
+        title:'📖 Origin in Gemara',
+        body:'The Davar Charif principle originates in the Gemara (עבודה זרה לה:, חולין קיא:) specifically discussing a <strong>non-kosher knife</strong>. The S"A distinguishes: remove כדי נטילה or need shishim. The Rama applies chanan — entire food forbidden when cut with non-kosher knife. When diced into small pieces, each piece becomes chanan.<br><br><strong>Store-bought:</strong> If uncertain about knife, permitted. If certain non-kosher knife used, remove כדי נטילה (Rama 96:1, ט״ז ח).',
+        sources:['A.Z. 35b','Chullin 111b','Y.D. 96:1','Shach 96:9']
+      }
+    };
+  }
 
   const ts=type==='meat'?'meat':'dairy';
   const opp=type==='meat'?'dairy':'meat';
 
   if(clean==='no')return{
     agree:true,
-    saV:'Needs 60×',ramaV:'Needs 60×',
-    context:'Actual residue (not just absorbed taste) transfers into the food through cutting pressure. This bypasses all leniencies — 60× is required.',
+    shortSummary:'Needs 60× — wipe knife before cutting next time.',
+    context:'Actual residue transfers, not just absorbed taste — bypasses all leniencies.',
     sa:{
       status:'sixty',
       text:'A dirty knife transfers <strong>actual substance</strong> (fat/residue) directly into the food via cutting pressure. This is not merely absorbed <em>ta\'am</em> but actual forbidden matter. Removing a כדי נטילה cannot fix this. If the food was cooked with '+opp+', you need <strong>60× against the knife\'s volume</strong> (specifically against the part that touched the food, if smaller than כדי נטילה).',
@@ -207,19 +251,19 @@ function getData(){
 
   if(by==='yes')return{
     agree:false,
-    saV:'Remove כדי נטילה',ramaV:'Entire food forbidden',
-    context:'Both require action, but differ on scope. S"A (following ראב״ד): remove fingerbreadth. Rama (following רשב״א): entire food forbidden l\'chatchila.',
+    shortSummary:'S"A: Remove fingerbreadth.<br>Rama: Entire food forbidden l\'chatchila.',
+    context:'S"A (ראב״ד): flavor travels רק כדי נטילה. Rama (רשב״א): entire food forbidden l\'chatchila.',
     sa:{
       status:'netila',
-      text:'<em>Duchka d\'Sakina</em> (knife pressure) combined with the food\'s sharpness squeezes absorbed taste from the knife into the food. According to <strong>ראב״ד</strong>, this flavor travels only a <strong>כדי נטילה</strong> (fingerbreadth) from the cut surface. Remove that portion. The remainder has <strong>'+ts+' status</strong> (not pareve) but is permitted.',
+      text:'<em>Duchka d\'Sakina</em> (knife pressure) combined with the food\'s sharpness squeezes absorbed taste from the knife into the food. According to <strong>ראב״ד</strong>, this flavor travels only a <strong>כדי נטילה</strong> (fingerbreadth) from the cut surface. Remove that portion. The remainder has <strong>'+ts+' status</strong> (not pareve) but is permitted. (Alternatively, taste the food—if no '+ts+' flavor, it may be eaten with '+opp+'; the ש״ך (ה) says we do not rely on tasting l\'chatchilla.)',
       opinions:[],
       action:'<strong>Remove the outer fingerbreadth</strong> from where the knife cut. The remainder is '+ts+' (may not be eaten with '+opp+'). <strong>B\'dieved:</strong> If already cooked with '+opp+' without removing: needs 60× against the כדי נטילה portion.'
     },
     rama:{
       status:'netila',
-      text:'L\'chatchila follows <strong>רשב״א</strong>: the absorbed flavor travels <strong>throughout the entire food</strong>. The whole onion/radish is forbidden l\'chatchila, not just a fingerbreadth. Only <strong>b\'dieved</strong> (already cooked) do we rely on the lenient opinion of ראב״ד and permit after removing a כדי נטילה.',
+      text:'L\'chatchila follows <strong>רשב״א</strong>: the absorbed flavor travels <strong>throughout the entire food</strong>. The whole onion/radish is forbidden l\'chatchila, not just a fingerbreadth. Only <strong>b\'dieved</strong> — when the food was already cut and cooked (ש״ך (י)) — do we rely on ראב״ד and assume flavor traveled only until a כדי נטילה. Remove that portion from the cut surface of the cooked food.',
       opinions:[],
-      action:'<strong>L\'chatchila:</strong> Entire food may not be eaten with '+opp+'. <strong>B\'dieved:</strong> If already cooked, remove כדי נטילה — remainder is '+ts+'.'
+      action:'<strong>L\'chatchila:</strong> Entire food may not be eaten with '+opp+'. <strong>B\'dieved:</strong> If already cut and cooked, remove כדי נטילה from the area that was sliced (the cut surface) — remainder is '+ts+'.'
     },
     lam:{
       title:'Status & Waiting Period',
@@ -231,22 +275,13 @@ function getData(){
   /* EINO BEN YOMO · CLEAN — the central machloket */
   return{
     agree:false,
-    saV:'Two opinions (lenient)',ramaV:'Entire food forbidden',
-    context:'The heart of the sugya. Two machloket converge. Sephardim follow lenient S"A (מהר״ם). Ashkenazim follow strict Rama (רבינו ברוך + רשב״א).',
+    shortSummary:'Sephardim: Permitted.<br>Ashkenazim: Entire food forbidden.',
+    context:'Sephardim follow מהר״ם (lenient). Ashkenazim follow רבינו ברוך + רשב״א (strict).',
     sa:{
-      status:'two',
-      text:'The S"A (סעיף א׳) presents <strong>two opinions</strong> without definitively ruling. Sephardim follow the first (סתם) opinion:',
-      opinions:[
-        {
-          title:'Opinion 1 · מהר״ם & רבינו יחיאל (S"A\'s primary view)',
-          text:'Only <strong>חלתית</strong> (specific sharp vegetable unknown today) can reawaken Eino Ben Yomo flavor. All other sharp foods (onion, garlic, radish) only absorb from a Ben Yomo knife. With an Eino Ben Yomo knife: <strong>the food is completely permitted</strong> — no removal needed.'
-        },
-        {
-          title:'Opinion 2 · רבינו ברוך & תרומה (quoted as יש אומרים)',
-          text:'<strong>All sharp foods</strong> reawaken and absorb even Eino Ben Yomo flavor. Need to remove <strong>כדי נטילה</strong> (per ראב״ד — flavor travels that distance).'
-        }
-      ],
-      action:'<strong>Sephardim:</strong> Follow Opinion 1 (מהר״ם) — Eino Ben Yomo + clean = permitted, no action needed. <strong>B\'sha\'at hadechak:</strong> If already mixed, may rely on lenient view.'
+      status:'mutar',
+      text:'Sephardim follow <strong>מהר״ם & רבינו יחיאל</strong>: Only חלתית (specific sharp vegetable unknown today) can reawaken Eino Ben Yomo flavor. All other sharp foods (onion, garlic, radish) only absorb from a Ben Yomo knife. With an Eino Ben Yomo knife: <strong>the food is completely permitted</strong> — no removal needed.',
+      opinions:[],
+      action:'<strong>Permitted</strong> — no action needed. <strong>B\'sha\'at hadechak:</strong> If already mixed, may rely on lenient view.'
     },
     rama:{
       status:'assur',
@@ -261,7 +296,7 @@ function getData(){
           text:'L\'chatchila, absorbed flavor travels <strong>throughout the entire food</strong>, not just a כדי נטילה. The whole onion/radish is forbidden l\'chatchila. Only b\'dieved (already cooked): rely on ראב״ד\'s lenient view of כדי נטילה.'
         }
       ],
-      action:'<strong>L\'chatchila:</strong> Entire food may not be eaten with '+opp+'. <strong>B\'dieved</strong> (already cooked): Remove כדי נטילה; the mixture needs 60× if fully combined.'
+      action:'<strong>L\'chatchila:</strong> Entire food may not be eaten with '+opp+'. <strong>B\'dieved:</strong> If already cut and cooked, remove כדי נטילה from the area that was sliced — remainder is '+ts+'. If fully combined in a mixture: needs 60×.'
     },
     lam:{
       title:'Why Rama is Strict on Both',
@@ -282,19 +317,19 @@ function rulingCard(data,name,cls){
   return`<div class="ruling-card ${cls}">
     <div class="ruling-header">
       <span class="ruling-header-dot"></span>
-      <div class="ruling-header-text">
-        <span class="ruling-header-name">${name}</span>
-        <span class="ruling-header-heb">${cls==='sa'?'שׁוּלְחָן עָרוּךְ':'רְמָ״א'}</span>
-      </div>
+      <span class="ruling-header-name">${name}</span>
+      <span class="ruling-status status-${data.status}">${getStatusLabel(data.status)}</span>
     </div>
     <div class="ruling-body">
-      <span class="ruling-status status-${data.status}">${getStatusLabel(data.status)}</span>
-      <div class="ruling-text">${data.text}</div>
-      ${opinions}
-      <div class="action-box">
-        <span class="action-label">Required Action</span>
+      <div class="action-box action-first">
+        <span class="action-label">What to do</span>
         <div class="action-text">${data.action}</div>
       </div>
+      <details class="ruling-details">
+        <summary>Reasoning</summary>
+        <div class="ruling-text">${data.text}</div>
+        ${opinions}
+      </details>
     </div>
   </div>`;
 }
@@ -313,14 +348,17 @@ function getStatusLabel(status){
 let fadeTimeout;
 function render(){
   const data=getData();
+  setPillStates();
   
-  document.getElementById('sa-verdict').textContent=data.saV;
-  document.getElementById('rama-verdict').textContent=data.ramaV;
-  document.getElementById('context').textContent=data.context;
+  document.getElementById('quick-text').innerHTML=data.shortSummary||'—';
+  const qIcon=document.getElementById('quick-icon');
+  const status=data.sa?.status||'';
+  qIcon.className='quick-icon'+(status?' quick-'+status:'');
+  qIcon.textContent=getQuickIcon(status);
   
-  const agreement=document.getElementById('agreement');
-  agreement.className='verdict-agreement '+(data.agree?'agree':'disagree');
-  agreement.textContent=data.agree?'✓ Agree':'⚠ Disagree';
+  const ctxEl=document.getElementById('quick-context');
+  ctxEl.textContent=data.context||'';
+  ctxEl.style.display=data.context?'block':'none';
   
   const grid=document.getElementById('ruling-grid');
   grid.classList.add('fading');
@@ -340,6 +378,12 @@ function render(){
   },200);
 }
 
+function getQuickIcon(status){
+  const icons={mutar:'✓',assur:'✗',sixty:'×',netila:'⊘',two:'⚖'};
+  return icons[status]||'•';
+}
+
+initPills();
 render();
 </script>
 </div>

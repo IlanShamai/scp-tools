@@ -85,47 +85,155 @@
   line-height: 1.4;
 }
 
+/* Controls — pill buttons, mobile-first */
 .siman-96-page .controls {
   padding: 1rem;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
 }
 
-.siman-96-page .control-group {
-  margin-bottom: 1rem;
+.siman-96-page .controls-intro {
+  font-size: 13px;
+  color: var(--ink-light);
+  margin: 0 0 1rem 0;
 }
 
-.siman-96-page .control-group:last-child {
-  margin-bottom: 0;
+.siman-96-page .control-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.siman-96-page .control-set {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .siman-96-page .control-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-light);
-  font-weight: 500;
-  margin-bottom: 6px;
-  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
 }
 
-.siman-96-page .control-select {
-  appearance: none;
-  background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2371717a' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 11px 36px 11px 12px;
-  font-size: 15px;
+.siman-96-page .control-label .hint {
+  font-weight: 400;
+  color: var(--ink-light);
+  font-size: 12px;
+}
+
+.siman-96-page .pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.siman-96-page .pill {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0.9rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  font-size: 14px;
   font-weight: 500;
   color: var(--ink);
   cursor: pointer;
   transition: all 0.15s ease;
-  width: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.siman-96-page .control-select:active {
-  background-color: #f4f4f5;
+.siman-96-page .pill:hover {
+  border-color: var(--ink-lighter);
+  background: #f4f4f5;
+}
+
+.siman-96-page .pill[aria-pressed="true"] {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+}
+
+.siman-96-page .pill[data-type="treif"][aria-pressed="true"] {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.siman-96-page .pill[data-type="pareve"][aria-pressed="true"] {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.siman-96-page .pill[data-type="meat"][aria-pressed="true"],
+.siman-96-page .pill[data-type="dairy"][aria-pressed="true"] {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+/* Quick answer — glanceable one-liner */
+.siman-96-page .quick-answer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  margin: 0 1rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--teal);
+}
+
+.siman-96-page .quick-icon {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 50%;
+  background: var(--gray-bg);
+  color: var(--ink);
+}
+
+.siman-96-page .quick-icon.quick-mutar {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.siman-96-page .quick-icon.quick-assur,
+.siman-96-page .quick-icon.quick-sixty {
+  background: var(--red-bg);
+  color: var(--red);
+}
+
+.siman-96-page .quick-icon.quick-netila,
+.siman-96-page .quick-icon.quick-two {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.siman-96-page .quick-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.siman-96-page .quick-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.siman-96-page .quick-context {
+  font-size: 13px;
+  color: var(--ink-light);
+  line-height: 1.4;
+  margin: 0.5rem 0 0 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
 }
 
 .siman-96-page .verdict-hero {
@@ -179,58 +287,30 @@
 .siman-96-page .verdict-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 1rem;
   margin-bottom: 12px;
 }
 
 .siman-96-page .verdict-col {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0.25rem;
 }
-
-.siman-96-page .verdict-posek {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 2px;
-}
-
-.siman-96-page .verdict-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.siman-96-page .verdict-col.sa .verdict-dot { background: var(--teal); }
-.siman-96-page .verdict-col.rama .verdict-dot { background: var(--red); }
 
 .siman-96-page .verdict-name {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 11px;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .siman-96-page .verdict-col.sa .verdict-name { color: var(--teal); }
 .siman-96-page .verdict-col.rama .verdict-name { color: var(--red); }
 
-.siman-96-page .verdict-heb {
-  font-family: 'Noto Serif Hebrew', serif;
-  font-size: 13px;
-  font-weight: 700;
-  direction: rtl;
-  opacity: 0.5;
-  margin-top: -2px;
-}
-
 .siman-96-page .verdict-result {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--ink);
-  letter-spacing: -0.01em;
   line-height: 1.3;
 }
 
@@ -367,16 +447,17 @@
 .siman-96-page .ruling-card.rama { border-top: 3px solid var(--red); }
 
 .siman-96-page .ruling-header {
-  padding: 12px 1rem;
+  padding: 0.75rem 1rem;
   background: var(--gray-bg);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .siman-96-page .ruling-header-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -384,45 +465,71 @@
 .siman-96-page .ruling-card.sa .ruling-header-dot { background: var(--teal); }
 .siman-96-page .ruling-card.rama .ruling-header-dot { background: var(--red); }
 
-.siman-96-page .ruling-header-text {
+.siman-96-page .ruling-header-name {
+  font-size: 12px;
+  font-weight: 600;
   flex: 1;
   min-width: 0;
-}
-
-.siman-96-page .ruling-header-name {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 600;
-  display: block;
-  margin-bottom: 2px;
 }
 
 .siman-96-page .ruling-card.sa .ruling-header-name { color: var(--teal); }
 .siman-96-page .ruling-card.rama .ruling-header-name { color: var(--red); }
 
-.siman-96-page .ruling-header-heb {
-  font-family: 'Noto Serif Hebrew', serif;
-  font-size: 13px;
-  font-weight: 700;
-  direction: rtl;
-  opacity: 0.5;
+.siman-96-page .ruling-header .ruling-status {
+  margin-left: auto;
+  margin-bottom: 0;
 }
 
 .siman-96-page .ruling-body {
   padding: 1rem;
 }
 
+.siman-96-page .action-first {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.siman-96-page .ruling-details {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.siman-96-page .ruling-details summary {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-light);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.siman-96-page .ruling-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.siman-96-page .ruling-details summary::before {
+  content: '▶ ';
+  font-size: 10px;
+  margin-right: 0.25rem;
+}
+
+.siman-96-page .ruling-details[open] summary::before {
+  content: '▼ ';
+}
+
+.siman-96-page .ruling-details .ruling-text {
+  margin-top: 0.75rem;
+}
+
 .siman-96-page .ruling-status {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 5px 10px;
+  padding: 4px 8px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  margin-bottom: 12px;
   border: 1px solid;
 }
 
@@ -546,22 +653,44 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.siman-96-page .lamdus-header {
-  padding: 12px 1rem;
+.siman-96-page .lamdus-toggle {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background: var(--gray-bg);
-  border-bottom: 1px solid var(--border);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.siman-96-page .lamdus-title {
-  font-family: 'IBM Plex Mono', monospace;
+.siman-96-page .lamdus-toggle:hover {
+  background: #e7e5e4;
+}
+
+.siman-96-page .lamdus-chevron {
+  color: var(--ink-lighter);
   font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-light);
-  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.siman-96-page .lamdus-chevron.open {
+  transform: rotate(180deg);
 }
 
 .siman-96-page .lamdus-body {
+  padding: 0;
+  display: none;
+  border-top: 1px solid var(--border);
+}
+
+.siman-96-page .lamdus-body.open {
+  display: block;
   padding: 1rem;
 }
 
@@ -615,12 +744,23 @@
   .siman-96-page .heb { font-size: 22px; }
   .siman-96-page .subtitle { font-size: 14px; }
   .siman-96-page .controls { padding: 1.25rem 1.5rem; }
-  .siman-96-page .controls-grid {
+  .siman-96-page .control-pills {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
-  .siman-96-page .control-group { margin-bottom: 0; }
+  .siman-96-page .control-set {
+    flex-direction: column;
+  }
+  .siman-96-page .pill-row {
+    flex-wrap: wrap;
+  }
+  .siman-96-page .pill {
+    flex: 1 1 auto;
+    min-width: 80px;
+  }
+  .siman-96-page .quick-answer { padding: 1.25rem 1.5rem; margin: 0 1.5rem 1.5rem; }
+  .siman-96-page .quick-text { font-size: 16px; }
   .siman-96-page .verdict-hero { padding: 1.5rem; margin: 0 1.5rem 1.5rem; }
   .siman-96-page .verdict-header { margin-bottom: 16px; padding-bottom: 12px; }
   .siman-96-page .verdict-grid { gap: 16px; margin-bottom: 16px; }
@@ -633,8 +773,8 @@
   .siman-96-page .ruling-header { padding: 14px 1.25rem; }
   .siman-96-page .ruling-body { padding: 1.25rem; }
   .siman-96-page .lamdus { padding: 0 1.5rem 2rem; }
-  .siman-96-page .lamdus-header { padding: 14px 1.25rem; }
-  .siman-96-page .lamdus-body { padding: 1.25rem; }
+  .siman-96-page .lamdus-toggle { padding: 1rem 1.25rem; }
+  .siman-96-page .lamdus-body.open { padding: 1.25rem; }
   .siman-96-page .lamdus-gem { font-size: 16px; margin-bottom: 12px; }
 }
 
