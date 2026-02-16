@@ -1,33 +1,20 @@
-/* Siman 96 — Davar Charif — page-specific styles */
+/* Siman 96 — Davar Charif — uses tokens + teal accent */
 .siman-96-page *, .siman-96-page *::before, .siman-96-page *::after { box-sizing: border-box; }
 
 .siman-96-page {
-  --bg: #fafaf9;
-  --surface: #ffffff;
-  --border: #e7e5e4;
-  --ink: #18181b;
-  --ink-light: #71717a;
-  --ink-lighter: #a1a1aa;
-  --teal: #0f766e;
-  --teal-bg: #f0fdfa;
-  --teal-border: #99f6e4;
-  --red: #b91c1c;
-  --red-bg: #fef2f2;
-  --red-border: #fecaca;
-  --amber: #d97706;
-  --amber-bg: #fffbeb;
-  --green: #15803d;
-  --green-bg: #f0fdf4;
+  /* Page accent (teal) — distinct from Siman 94 */
+  --accent: #0f766e;
+  --accent-bg: #f0fdfa;
+  --accent-border: #99f6e4;
+  /* Gray for neutral UI elements */
   --gray: #52525b;
   --gray-bg: #f4f4f5;
-  --radius: 8px;
-  --radius-sm: 4px;
 }
 
 .siman-96-page {
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -47,7 +34,7 @@
 }
 
 .siman-96-page .header-meta {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -71,9 +58,9 @@
 }
 
 .siman-96-page .heb {
-  font-family: 'Noto Serif Hebrew', serif;
+  font-family: var(--font-heb);
   font-weight: 700;
-  color: var(--amber);
+  color: var(--heb-accent);
   font-size: 18px;
   direction: rtl;
 }
@@ -133,7 +120,7 @@
   min-width: 0;
   padding: 0.6rem 0.9rem;
   border: 2px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-md);
   background: var(--bg);
   font-size: 14px;
   font-weight: 500;
@@ -149,25 +136,25 @@
 }
 
 .siman-96-page .pill[aria-pressed="true"] {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: var(--accent);
+  border-color: var(--accent);
   color: #fff;
 }
 
 .siman-96-page .pill[data-type="treif"][aria-pressed="true"] {
-  background: var(--red);
-  border-color: var(--red);
+  background: var(--assur);
+  border-color: var(--assur);
 }
 
 .siman-96-page .pill[data-type="pareve"][aria-pressed="true"] {
-  background: var(--green);
-  border-color: var(--green);
+  background: var(--mutar);
+  border-color: var(--mutar);
 }
 
 .siman-96-page .pill[data-type="meat"][aria-pressed="true"],
 .siman-96-page .pill[data-type="dairy"][aria-pressed="true"] {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 /* Quick answer — glanceable one-liner */
@@ -179,8 +166,8 @@
   margin: 0 1rem 1rem;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  border-left: 4px solid var(--teal);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--accent);
 }
 
 .siman-96-page .quick-icon {
@@ -198,20 +185,20 @@
 }
 
 .siman-96-page .quick-icon.quick-mutar {
-  background: var(--green-bg);
-  color: var(--green);
+  background: var(--mutar-bg);
+  color: var(--mutar);
 }
 
 .siman-96-page .quick-icon.quick-assur,
 .siman-96-page .quick-icon.quick-sixty {
-  background: var(--red-bg);
-  color: var(--red);
+  background: var(--assur-bg);
+  color: var(--assur);
 }
 
 .siman-96-page .quick-icon.quick-netila,
 .siman-96-page .quick-icon.quick-two {
-  background: var(--amber-bg);
-  color: var(--amber);
+  background: var(--netila-bg);
+  color: var(--netila);
 }
 
 .siman-96-page .quick-content {
@@ -241,7 +228,7 @@
   margin: 0 1rem 1rem;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-md);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
@@ -255,7 +242,7 @@
 }
 
 .siman-96-page .verdict-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -275,13 +262,13 @@
 }
 
 .siman-96-page .verdict-agreement.agree {
-  background: var(--green-bg);
-  color: var(--green);
+  background: var(--mutar-bg);
+  color: var(--mutar);
 }
 
 .siman-96-page .verdict-agreement.disagree {
-  background: var(--red-bg);
-  color: var(--red);
+  background: var(--machloket-bg);
+  color: var(--machloket);
 }
 
 .siman-96-page .verdict-grid {
@@ -304,8 +291,8 @@
   letter-spacing: 0.04em;
 }
 
-.siman-96-page .verdict-col.sa .verdict-name { color: var(--teal); }
-.siman-96-page .verdict-col.rama .verdict-name { color: var(--red); }
+.siman-96-page .verdict-col.sa .verdict-name { color: var(--accent); }
+.siman-96-page .verdict-col.rama .verdict-name { color: var(--assur); }
 
 .siman-96-page .verdict-result {
   font-size: 15px;
@@ -331,8 +318,8 @@
 .siman-96-page .foundation-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--amber);
-  border-radius: var(--radius);
+  border-left: 3px solid var(--insight);
+  border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
@@ -363,11 +350,11 @@
 }
 
 .siman-96-page .foundation-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--amber);
+  color: var(--insight);
   font-weight: 600;
   flex-shrink: 0;
 }
@@ -438,13 +425,13 @@
 .siman-96-page .ruling-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.siman-96-page .ruling-card.sa { border-top: 3px solid var(--teal); }
-.siman-96-page .ruling-card.rama { border-top: 3px solid var(--red); }
+.siman-96-page .ruling-card.sa { border-top: 3px solid var(--accent); }
+.siman-96-page .ruling-card.rama { border-top: 3px solid var(--assur); }
 
 .siman-96-page .ruling-header {
   padding: 0.75rem 1rem;
@@ -462,8 +449,8 @@
   flex-shrink: 0;
 }
 
-.siman-96-page .ruling-card.sa .ruling-header-dot { background: var(--teal); }
-.siman-96-page .ruling-card.rama .ruling-header-dot { background: var(--red); }
+.siman-96-page .ruling-card.sa .ruling-header-dot { background: var(--accent); }
+.siman-96-page .ruling-card.rama .ruling-header-dot { background: var(--assur); }
 
 .siman-96-page .ruling-header-name {
   font-size: 12px;
@@ -472,8 +459,8 @@
   min-width: 0;
 }
 
-.siman-96-page .ruling-card.sa .ruling-header-name { color: var(--teal); }
-.siman-96-page .ruling-card.rama .ruling-header-name { color: var(--red); }
+.siman-96-page .ruling-card.sa .ruling-header-name { color: var(--accent); }
+.siman-96-page .ruling-card.rama .ruling-header-name { color: var(--assur); }
 
 .siman-96-page .ruling-header .ruling-status {
   margin-left: auto;
@@ -534,32 +521,32 @@
 }
 
 .siman-96-page .status-mutar {
-  background: var(--green-bg);
-  color: var(--green);
+  background: var(--mutar-bg);
+  color: var(--mutar);
   border-color: rgba(21, 128, 61, 0.2);
 }
 
 .siman-96-page .status-assur {
-  background: var(--red-bg);
-  color: var(--red);
+  background: var(--assur-bg);
+  color: var(--assur);
   border-color: rgba(185, 28, 28, 0.2);
 }
 
 .siman-96-page .status-netila {
-  background: var(--amber-bg);
-  color: var(--amber);
+  background: var(--netila-bg);
+  color: var(--netila);
   border-color: rgba(217, 119, 6, 0.2);
 }
 
 .siman-96-page .status-sixty {
-  background: var(--red-bg);
-  color: var(--red);
+  background: var(--sixty-bg);
+  color: var(--sixty);
   border-color: rgba(185, 28, 28, 0.2);
 }
 
 .siman-96-page .status-two {
-  background: var(--gray-bg);
-  color: var(--gray);
+  background: var(--neutral-opinion-bg);
+  color: var(--neutral-opinion);
   border-color: rgba(82, 82, 91, 0.2);
 }
 
@@ -587,7 +574,7 @@
 }
 
 .siman-96-page .opinion-title {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -615,11 +602,11 @@
   border-left: 3px solid;
 }
 
-.siman-96-page .ruling-card.sa .action-box { border-left-color: var(--teal); }
-.siman-96-page .ruling-card.rama .action-box { border-left-color: var(--red); }
+.siman-96-page .ruling-card.sa .action-box { border-left-color: var(--accent); }
+.siman-96-page .ruling-card.rama .action-box { border-left-color: var(--assur); }
 
 .siman-96-page .action-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -628,8 +615,8 @@
   display: block;
 }
 
-.siman-96-page .ruling-card.sa .action-label { color: var(--teal); }
-.siman-96-page .ruling-card.rama .action-label { color: var(--red); }
+.siman-96-page .ruling-card.sa .action-label { color: var(--accent); }
+.siman-96-page .ruling-card.rama .action-label { color: var(--assur); }
 
 .siman-96-page .action-text {
   font-size: 13px;
@@ -648,7 +635,7 @@
 .siman-96-page .lamdus-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
@@ -697,7 +684,7 @@
 .siman-96-page .lamdus-gem {
   font-weight: 700;
   font-size: 15px;
-  color: var(--amber);
+  color: var(--insight);
   margin-bottom: 10px;
   display: block;
 }
@@ -727,7 +714,7 @@
 }
 
 .siman-96-page .source-tag {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   padding: 4px 8px;
   background: var(--gray-bg);

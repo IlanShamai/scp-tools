@@ -1,15 +1,5 @@
-/* Site-wide header and footer - shared across all pages */
+/* Site-wide nav and footer — uses design tokens */
 *, *::before, *::after { box-sizing: border-box; }
-
-:root {
-  --nav-bg: #1a1a1a;
-  --nav-text: #f5f5f4;
-  --nav-hover: #a8a29e;
-  --footer-bg: #1a1a1a;
-  --footer-text: #a8a29e;
-  --nav-height: 52px;
-  --page-bg: #fafaf9;
-}
 
 body {
   margin: 0;
@@ -17,17 +7,18 @@ body {
   display: flex;
   flex-direction: column;
   background: var(--page-bg);
-  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
 }
 
 .site-nav {
   background: var(--nav-bg);
+  background-color: var(--nav-fallback);
   color: var(--nav-text);
-  padding: 0.875rem 1.25rem;
+  padding: var(--space-md) var(--space-lg);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .nav-inner {
@@ -37,7 +28,7 @@ body {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: var(--space-md);
 }
 
 .nav-logo {
@@ -49,7 +40,7 @@ body {
 }
 
 .nav-logo:hover {
-  color: #fff;
+  color: var(--nav-text);
 }
 
 .nav-links {
@@ -64,11 +55,19 @@ body {
   font-size: 0.9rem;
   font-weight: 500;
   opacity: 0.9;
+  transition: opacity 0.15s ease, color 0.15s ease;
 }
 
 .nav-links a:hover {
   color: var(--nav-hover);
   opacity: 1;
+}
+
+.nav-links a.nav-active {
+  color: var(--nav-text);
+  opacity: 1;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7);
 }
 
 .site-main {
@@ -77,12 +76,13 @@ body {
 
 .site-footer {
   background: var(--footer-bg);
-  color: var(--footer-text);
-  padding: 1.25rem 1rem;
+  background-color: var(--nav-fallback);
+  color: var(--nav-hover);
+  padding: var(--space-lg) var(--space-md);
   margin-top: auto;
   font-size: 0.85rem;
   text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .footer-inner {

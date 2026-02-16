@@ -1,10 +1,6 @@
 ---
 layout: default
 title: Home
-extra_head: |
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=Noto+Serif+Hebrew:wght@400;700&display=swap" rel="stylesheet">
 ---
 
 <div class="home">
@@ -31,23 +27,23 @@ extra_head: |
 .home {
   max-width: 900px;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
-  font-family: 'DM Sans', system-ui, sans-serif;
+  padding: var(--space-2xl) var(--space-lg);
+  font-family: var(--font-sans);
 }
 .home-header {
   text-align: center;
   margin-bottom: 3.5rem;
 }
 .home-header h1 {
-  font-family: 'DM Serif Display', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: clamp(2rem, 5vw, 2.75rem);
   font-weight: 400;
-  color: #1a1a1a;
-  margin: 0 0 0.75rem 0;
+  color: var(--ink);
+  margin: 0 0 var(--space-md) 0;
   letter-spacing: -0.02em;
 }
 .home-subtitle {
-  color: #5c5c5c;
+  color: var(--ink-light);
   font-size: 1.05rem;
   font-weight: 500;
   margin: 0;
@@ -59,13 +55,13 @@ extra_head: |
 .tools-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: var(--space-lg);
 }
 .tool-card {
   display: block;
-  background: #fff;
-  border: 1px solid #e8e6e4;
-  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
   padding: 1.75rem;
   text-decoration: none;
   color: inherit;
@@ -74,32 +70,32 @@ extra_head: |
 .tool-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.12);
-  border-color: #c9c6c2;
+  border-color: var(--border-hover);
 }
 .tool-icon {
   font-size: 2.25rem;
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-md);
   opacity: 0.9;
 }
 .tool-card h2 {
-  font-family: 'DM Serif Display', Georgia, serif;
+  font-family: var(--font-serif);
   font-size: 1.25rem;
   font-weight: 400;
-  margin: 0 0 0.5rem 0;
-  color: #1a1a1a;
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--ink);
   line-height: 1.35;
 }
 .tool-card h2 .heb {
-  font-family: 'Noto Serif Hebrew', serif;
+  font-family: var(--font-heb);
   font-size: 0.95em;
-  color: #8b6914;
+  color: var(--heb-accent);
   font-weight: 700;
   direction: rtl;
 }
 .tool-card p {
   font-size: 0.9rem;
-  color: #5c5c5c;
+  color: var(--ink-light);
   line-height: 1.6;
   margin: 0;
 }

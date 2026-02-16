@@ -1,0 +1,77 @@
+/* SCP Tools — Design tokens (shared across all pages) */
+
+:root {
+  /* Typography */
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-heb: 'Noto Serif Hebrew', serif;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Neutral palette */
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --border: #e7e5e4;
+  --border-hover: #c9c6c2;
+  --ink: #18181b;
+  --ink-light: #71717a;
+  --ink-lighter: #a1a1aa;
+
+  /* Semantic (shared) */
+  --success: #15803d;
+  --success-bg: #f0fdf4;
+  --error: #b91c1c;
+  --error-bg: #fef2f2;
+  --warning: #d97706;
+  --warning-bg: #fffbeb;
+
+  /* Halachic semantics — use across all tools for consistency
+   * assur: forbidden / discard
+   * mutar: permitted / no action
+   * machloket: S"A vs Rama disagree
+   * netila: remove כדי נטילה
+   * sixty: needs 60×
+   * insight: background, key insight, information
+   * neutral-opinion: two opinions / gray area */
+  --assur: #b91c1c;
+  --assur-bg: #fef2f2;
+  --mutar: #15803d;
+  --mutar-bg: #f0fdf4;
+  --machloket: #b45309;
+  --machloket-bg: #fffbeb;
+  --netila: #d97706;
+  --netila-bg: #fffbeb;
+  --sixty: #b91c1c;
+  --sixty-bg: #fef2f2;
+  --insight: #2563eb;
+  --insight-bg: #eff6ff;
+  --neutral-opinion: #52525b;
+  --neutral-opinion-bg: #f4f4f5;
+
+  /* Decorative */
+  --heb-accent: #8b6914;      /* Gold for Hebrew text (סימן צ״ו etc.) */
+
+  /* Nav & footer (site frame) — lighter blue for coherence with insight/teal */
+  --nav-bg: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+  --footer-bg: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+  --nav-fallback: #2563eb;
+  --nav-text: #ffffff;
+  --nav-hover: #93c5fd;
+  --nav-height: 52px;
+
+  /* Page bg (for body) */
+  --page-bg: var(--bg);
+}
