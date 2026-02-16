@@ -8,3 +8,7 @@ node_modules/
 __pycache__/
 .env
 
+# Jekyll
+_site/
+.jekyll-cache/
+

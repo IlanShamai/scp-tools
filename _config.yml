@@ -1,0 +1,19 @@
+# SCP Tools - Jekyll config for GitHub Pages
+title: SCP Tools
+description: Tools that can help teach SCP shiurim
+# For project sites (username.github.io/repo-name), set baseurl: "/repo-name"
+baseurl: ""
+url: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - netlify.toml
+  - .git
+  - .gitignore

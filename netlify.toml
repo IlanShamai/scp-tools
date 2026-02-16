@@ -1,6 +1,7 @@
 [build]
-  # Publish directory - Netlify will serve files from here as the site root
-  publish = "siman/צד/ladel_and_pot/"
+  # Jekyll build for GitHub Pages compatibility
+  command = "bundle exec jekyll build"
+  publish = "_site"
 
-# No build command needed for static HTML/CSS
-# Netlify will automatically deploy the files from the publish directory
+[build.environment]
+  JEKYLL_ENV = "production"
