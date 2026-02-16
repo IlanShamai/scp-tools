@@ -1,6 +1,6 @@
 # SCP Tools
 
-Interactive study aids for SCP shiurim — צ״ד (Dairy Ladle in Meat Pot)
+Interactive study aids for SCP shiurim.
 
 ## Tools
 
