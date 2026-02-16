@@ -3,46 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🍲</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+Hebrew:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/tokens.css' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
-  {% if page.extra_css %}
-    {% for css in page.extra_css %}
-  <link rel="stylesheet" href="{{ css | relative_url }}">
-    {% endfor %}
-  {% endif %}
-  {% if page.extra_head %}{{ page.extra_head }}{% endif %}
+  <meta name="description" content="{{ site.description }}">
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-  <nav class="site-nav">
-    <div class="nav-inner">
-      <a href="{{ '/' | relative_url }}" class="nav-logo">{{ site.title }}</a>
-      <div class="nav-links">
-        <a href="{{ '/' | relative_url }}" class="{% if page.url == '/' or page.url == '/index.html' or page.url == '' %}nav-active{% endif %}">Home</a>
-        <a href="{{ '/siman-94.html' | relative_url }}" class="{% if page.url contains 'siman-94' %}nav-active{% endif %}">Siman 94 — Ladle & Pot</a>
-        <a href="{{ '/siman-96.html' | relative_url }}" class="{% if page.url contains 'siman-96' %}nav-active{% endif %}">Siman 96 — Davar Charif</a>
+  <header class="site-header">
+    <div class="header-content">
+      <div class="header-title">
+        <a href="{{ '/' | relative_url }}" class="site-logo">
+          <h1>{{ site.title }}</h1>
+        </a>
       </div>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="{{ '/' | relative_url }}" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
   <main class="site-main">
     {{ content }}
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">
-      <p>{{ site.description }} — Siman 94 (צ״ד) & Siman 96 (צ״ו)</p>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>SCP Tools</h3>
+        <p>Interactive halachic study aids for Yoreh Deah — Shulchan Aruch & Rama</p>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="{{ '/siman-94.html' | relative_url }}">Siman 94</a></li>
+          <li><a href="{{ '/siman-96.html' | relative_url }}">Siman 96</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>More</h4>
+        <ul class="footer-links">
+          <li><a href="https://github.com/IlanShamai/scp-tools">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 SCP Tools. Built with care.</p>
     </div>
   </footer>
-
-  {% if page.extra_js %}
-    {% for js in page.extra_js %}
-  <script src="{{ js | relative_url }}"></script>
-    {% endfor %}
-  {% endif %}
 </body>
 </html>
