@@ -1,8 +1,9 @@
 # SCP Tools - Jekyll config for GitHub Pages
 title: SCP Tools
-description: Tools that can help teach SCP shiurim
-# For project sites (username.github.io/repo-name), set baseurl: "/repo-name"
-baseurl: ""
+description: Interactive halachic study aids for Yoreh Deah
+# Project site: ilanshamai.github.io/scp-tools
+# User site (username.github.io): set baseurl: ""
+baseurl: "/scp-tools"
 url: ""
 
 # Build settings

@@ -1,83 +1,106 @@
 ---
 layout: default
 title: Home
+extra_head: |
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=Noto+Serif+Hebrew:wght@400;700&display=swap" rel="stylesheet">
 ---
 
 <div class="home">
   <header class="home-header">
     <h1>SCP Tools</h1>
-    <p class="home-subtitle">Interactive study aids for SCP shiurim — צ״ד</p>
+    <p class="home-subtitle">Interactive halachic study aids for Yoreh Deah — Shulchan Aruch & Rama</p>
   </header>
 
   <section class="tools-grid">
     <a href="{{ '/siman-94.html' | relative_url }}" class="tool-card">
-      <span class="tool-icon">🍲</span>
-      <h2>Siman 94 — Ladle & Pot</h2>
-      <p>Interactive Sugya: Shulchan Aruch vs. Rama on Ladles & Pots. Explore scenario variables and halachic outcomes.</p>
+      <span class="tool-icon" aria-hidden="true">🍲</span>
+      <h2>Siman 94 — Ladle & Pot <span class="heb">סימן צ״ד</span></h2>
+      <p>Dairy ladle dipped into a meat pot. Interactive exploration of Shulchan Aruch vs. Rama on Ben Yomo, Kli Rishon, Kli Sheini, and Shishim — with material (metal/wood) and dipping frequency.</p>
     </a>
     <a href="{{ '/siman-96.html' | relative_url }}" class="tool-card">
-      <span class="tool-icon">🔪</span>
-      <h2>Siman 96 — Davar Charif</h2>
-      <p>Study aid for cutting sharp foods (Davar Charif) with meat or dairy knives. Practical halachic guidance.</p>
+      <span class="tool-icon" aria-hidden="true">🔪</span>
+      <h2>Siman 96 — Davar Charif <span class="heb">סימן צ״ו</span></h2>
+      <p>Sharp foods (onion, garlic, radish) cut with meat or dairy knives. When does the food become forbidden? S"A vs. Rama on Eino Ben Yomo, כדי נטילה, and knife condition.</p>
     </a>
   </section>
 </div>
 
 <style>
 .home {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 3rem 1.5rem;
+  font-family: 'DM Sans', system-ui, sans-serif;
 }
 .home-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 .home-header h1 {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin: 0 0 0.5rem 0;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: -0.02em;
 }
 .home-subtitle {
-  color: #64748b;
-  font-size: 1.1rem;
+  color: #5c5c5c;
+  font-size: 1.05rem;
+  font-weight: 500;
   margin: 0;
+  max-width: 36ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
 }
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 .tool-card {
   display: block;
   background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 1.5rem;
+  border: 1px solid #e8e6e4;
+  border-radius: 16px;
+  padding: 1.75rem;
   text-decoration: none;
   color: inherit;
-  transition: box-shadow 0.2s, border-color 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .tool-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-color: #94a3b8;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.12);
+  border-color: #c9c6c2;
 }
 .tool-icon {
-  font-size: 2rem;
+  font-size: 2.25rem;
   display: block;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  opacity: 0.9;
 }
 .tool-card h2 {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 400;
   margin: 0 0 0.5rem 0;
-  color: #1e293b;
+  color: #1a1a1a;
+  line-height: 1.35;
+}
+.tool-card h2 .heb {
+  font-family: 'Noto Serif Hebrew', serif;
+  font-size: 0.95em;
+  color: #8b6914;
+  font-weight: 700;
+  direction: rtl;
 }
 .tool-card p {
   font-size: 0.9rem;
-  color: #64748b;
-  line-height: 1.5;
+  color: #5c5c5c;
+  line-height: 1.6;
   margin: 0;
 }
 </style>
