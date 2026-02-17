@@ -458,6 +458,45 @@ a:hover {
   opacity: 0.8;
 }
 
+/* Mode bar (Tool / Teaching Guide tabs) — in global CSS so it loads on deploy; page-specific CSS may load after or fail */
+.siman-96-mode-bar,
+.siman-94-mode-bar {
+  display: flex;
+  gap: 0;
+  padding: 0 1rem;
+  background: #fff;
+  border-bottom: 1px solid #e7e5e4;
+}
+
+.siman-96-mode-bar .mode-pill,
+.siman-94-mode-bar .mode-pill {
+  padding: 0.5rem 1.5rem;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #71717a;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.siman-96-mode-bar .mode-pill:hover,
+.siman-94-mode-bar .mode-pill:hover {
+  color: #18181b;
+  opacity: 1;
+}
+
+.siman-96-mode-bar .mode-pill.mode-active {
+  color: #0f766e;
+  border-bottom-color: #0f766e;
+  opacity: 1;
+}
+
+.siman-94-mode-bar .mode-pill.mode-active {
+  color: #4f46e5;
+  border-bottom-color: #4f46e5;
+  opacity: 1;
+}
+
 /* Subtle animations */
 @media (prefers-reduced-motion: no-preference) {
   * {
