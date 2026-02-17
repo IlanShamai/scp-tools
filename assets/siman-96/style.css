@@ -1,32 +1,32 @@
 /* Siman 96 — Davar Charif — uses tokens + teal accent */
 .siman-96-page *, .siman-96-page *::before, .siman-96-page *::after { box-sizing: border-box; }
 
-/* Mode toggle bar — Tool vs Teaching Guide */
+/* Mode toggle bar — Tool vs Teaching Guide (hardcoded: bar is outside .siman-96-page so can't use --accent) */
 .siman-96-mode-bar {
   display: flex;
   gap: 0;
-  padding: 0 var(--space-md);
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  padding: 0 1rem;
+  background: #fff;
+  border-bottom: 1px solid #e7e5e4;
 }
 
 .siman-96-mode-bar .mode-pill {
-  padding: var(--space-sm) var(--space-lg);
+  padding: 0.5rem 1.5rem;
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
-  color: var(--ink-light);
+  color: #71717a;
   border-bottom: 3px solid transparent;
   transition: color 0.2s, border-color 0.2s;
 }
 
 .siman-96-mode-bar .mode-pill:hover {
-  color: var(--ink);
+  color: #18181b;
 }
 
 .siman-96-mode-bar .mode-pill.mode-active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+  color: #0f766e;
+  border-bottom-color: #0f766e;
 }
 
 .siman-96-page {

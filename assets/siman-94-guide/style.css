@@ -1,0 +1,247 @@
+/* Siman 94 Teaching Guide — Color-Blind Friendly */
+.siman-94-guide * { box-sizing: border-box; }
+
+/* Mode toggle bar */
+.siman-94-mode-bar {
+  display: flex;
+  gap: 0;
+  padding: 0 1rem;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.siman-94-mode-bar .mode-pill {
+  padding: 0.5rem 1.5rem;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #666;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.siman-94-mode-bar .mode-pill:hover { color: #111; }
+.siman-94-mode-bar .mode-pill.mode-active {
+  color: #4f46e5;
+  border-bottom-color: #4f46e5;
+}
+
+.siman-94-guide {
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.65;
+  padding: var(--space-lg);
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.siman-94-guide header {
+  text-align: center;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  border-bottom: 3px double #475569;
+}
+
+.siman-94-guide header h1 { font-size: 21px; font-weight: 700; letter-spacing: -0.02em; }
+.siman-94-guide header h2 { font-size: 11px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: #64748b; margin-top: 5px; }
+
+/* Legend — colorblind: icons + patterns */
+.guide-legend {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  overflow: hidden;
+  background: white;
+}
+
+.guide-legend-item {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-right: 1px solid #e2e8f0;
+  font-size: 11px;
+}
+
+.guide-legend-item:last-child { border-right: none; }
+.guide-legend-icon { font-size: 18px; flex-shrink: 0; }
+.guide-legend-label { font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+.guide-legend-desc { font-size: 10.5px; color: #64748b; margin-top: 1px; }
+
+/* Section headers */
+.guide-section {
+  margin: 28px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.guide-section-num {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 700;
+  background: #475569;
+  color: white;
+  padding: 3px 9px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.guide-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  border-bottom: 2px solid #94a3b8;
+  flex: 1;
+  padding-bottom: 3px;
+}
+
+/* SA BOOK block — solid left border */
+.guide-sa {
+  display: flex;
+  align-items: stretch;
+  margin: 10px 0;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid #4f46e5;
+  background: #eef2ff;
+}
+
+.guide-sa-flag {
+  background: #4f46e5;
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 5px;
+  min-width: 24px;
+  flex-shrink: 0;
+}
+
+.guide-sa-body {
+  flex: 1;
+  padding: 9px 14px 10px;
+  font-size: 12.5px;
+}
+
+.guide-sa-body strong { font-weight: 700; }
+
+/* SOURCE SHEET block — dashed border */
+.guide-source {
+  display: flex;
+  align-items: stretch;
+  margin: 10px 0;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px dashed #0f766e;
+  background: #f0fdfa;
+}
+
+.guide-source-flag {
+  background: #0f766e;
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 5px;
+  min-width: 24px;
+  flex-shrink: 0;
+}
+
+.guide-source-body {
+  flex: 1;
+  padding: 9px 14px 10px;
+  font-size: 12.5px;
+}
+
+/* Subsections */
+.guide-subsection {
+  margin: 16px 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+}
+
+/* Tables */
+.guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 12px;
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.guide-table th,
+.guide-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.guide-table th {
+  background: #475569;
+  color: white;
+  font-weight: 700;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.guide-table tr:last-child td { border-bottom: none; }
+
+/* Takeaways */
+.guide-takeaways {
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: #f1f5f9;
+  border-left: 4px solid #4f46e5;
+  border-radius: 0 5px 5px 0;
+}
+
+.guide-takeaways h4 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 10px;
+  color: #334155;
+}
+
+.guide-takeaways ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.guide-takeaways li {
+  margin-bottom: 6px;
+  font-size: 12.5px;
+}
+
+@media (max-width: 680px) {
+  .guide-legend-item { min-width: 100%; }
+  .guide-table { font-size: 11px; }
+  .guide-table th, .guide-table td { padding: 6px 8px; }
+}

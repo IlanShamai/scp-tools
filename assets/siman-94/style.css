@@ -1,5 +1,30 @@
 /* Siman 94 — Ladle & Pot — mobile-first */
 
+/* Mode toggle bar — Tool vs Teaching Guide */
+.siman-94-mode-bar {
+  display: flex;
+  gap: 0;
+  padding: 0 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.siman-94-mode-bar .mode-pill {
+  padding: 0.5rem 1.5rem;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--slate-600);
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.siman-94-mode-bar .mode-pill:hover { color: var(--slate-800); }
+.siman-94-mode-bar .mode-pill.mode-active {
+  color: var(--accent-94);
+  border-bottom-color: var(--accent-94);
+}
+
 :root {
   --accent-94: #4f46e5;
   --accent-94-dark: #3730a3;
