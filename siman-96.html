@@ -50,6 +50,7 @@ extra_css:
 <div class="quick-answer" id="quick-answer">
   <span class="quick-icon" id="quick-icon"></span>
   <div class="quick-content">
+    <p class="quick-label">The onion</p>
     <p class="quick-text" id="quick-text">—</p>
     <p class="quick-context" id="quick-context"></p>
   </div>
@@ -158,8 +159,8 @@ function getData(){
 
   if(type==='pareve')return{
     agree:true,
-    shortSummary:'No issue — food stays pareve.',
-    context:'No meat or dairy absorption in a pareve knife.',
+    shortSummary:'All parve.',
+    context:'',
     sa:{
       status:'mutar',
       text:'No beli\'ah of meat or dairy exists in a pareve knife. The sharp food remains <strong>fully pareve</strong> and may be used with either meat or dairy.',
@@ -182,8 +183,8 @@ function getData(){
   if(type==='treif'){
     if(by==='no')return{
       agree:false,
-      shortSummary:'S"A: Permitted.<br>Rama: Entire food forbidden.',
-      context:'S"A (like מהר״ם): Eino Ben Yomo non-kosher flavor doesn\'t transfer to sharp foods. Rama: applies chanan to all prohibitions.',
+      shortSummary:'S"A: All parve.<br>Rama: Entire onion treif.',
+      context:'',
       sa:{
         status:'mutar',
         text:'The S"A holds that an <strong>Eino Ben Yomo</strong> non-kosher knife does not transfer flavor to sharp foods — similar to the מהר״ם view for meat/dairy. The sharpness only reawakens Ben Yomo absorbed taste.',
@@ -204,8 +205,8 @@ function getData(){
     };
     return{
       agree:false,
-      shortSummary:'S"A: Remove כדי נטילה or need 60×.<br>Rama: Entire food forbidden.',
-      context:'S"A: Remove the portion that touched the blade (or need shishim if cooked). Rama: chanan applies — entire food forbidden.',
+      shortSummary:'S"A: Fingerbreadth treif, rest parve.<br>Rama: Entire onion treif.',
+      context:'',
       sa:{
         status:'netila',
         text:'From משנה עבודה זרה (לה:): the sharp food\'s sharpness combined with <em>Duchka d\'Sakina</em> revives the non-kosher taste. The S"A holds you need <strong>shishim against the part that touched the blade</strong> (or the כדי נטילה — the smaller of the two, per ש״ך (ז)). The S"A does not apply chanan; the radish only absorbs flavor from the knife contact area.',
@@ -231,8 +232,8 @@ function getData(){
 
   if(clean==='no')return{
     agree:true,
-    shortSummary:'Needs 60× — wipe knife before cutting next time.',
-    context:'Actual residue transfers, not just absorbed taste — bypasses all leniencies.',
+    shortSummary:'S"A & Rama: Need 60× — affected portion '+ts+'.',
+    context:'',
     sa:{
       status:'sixty',
       text:'A dirty knife transfers <strong>actual substance</strong> (fat/residue) directly into the food via cutting pressure. This is not merely absorbed <em>ta\'am</em> but actual forbidden matter. Removing a כדי נטילה cannot fix this. If the food was cooked with '+opp+', you need <strong>60× against the knife\'s volume</strong> (specifically against the part that touched the food, if smaller than כדי נטילה).',
@@ -254,8 +255,8 @@ function getData(){
 
   if(by==='yes')return{
     agree:false,
-    shortSummary:'S"A: Remove fingerbreadth.<br>Rama: Entire food forbidden l\'chatchila.',
-    context:'S"A (ראב״ד): flavor travels רק כדי נטילה. Rama (רשב״א): entire food forbidden l\'chatchila.',
+    shortSummary:'S"A: Fingerbreadth '+ts+' (remove), remainder '+ts+'.<br>Rama: Entire onion '+ts+' l\'chatchila. B\'dieved: Remove fingerbreadth, remainder '+ts+'.',
+    context:'',
     sa:{
       status:'netila',
       text:'<em>Duchka d\'Sakina</em> (knife pressure) combined with the food\'s sharpness squeezes absorbed taste from the knife into the food. According to <strong>ראב״ד</strong>, this flavor travels only a <strong>כדי נטילה</strong> (fingerbreadth) from the cut surface. Remove that portion. The remainder has <strong>'+ts+' status</strong> (not pareve) but is permitted. (Alternatively, taste the food—if no '+ts+' flavor, it may be eaten with '+opp+'; the ש״ך (ה) says we do not rely on tasting l\'chatchilla.)',
@@ -278,8 +279,8 @@ function getData(){
   /* EINO BEN YOMO · CLEAN — the central machloket */
   return{
     agree:false,
-    shortSummary:'Sephardim: Permitted.<br>Ashkenazim: Entire food forbidden.',
-    context:'Sephardim follow מהר״ם (lenient). Ashkenazim follow רבינו ברוך + רשב״א (strict).',
+    shortSummary:'S"A: All parve.<br>Rama: Entire onion '+ts+'. B\'dieved: Remove fingerbreadth, remainder '+ts+'.',
+    context:'',
     sa:{
       status:'mutar',
       text:'Sephardim follow <strong>מהר״ם & רבינו יחיאל</strong>: Only חלתית (specific sharp vegetable unknown today) can reawaken Eino Ben Yomo flavor. All other sharp foods (onion, garlic, radish) only absorb from a Ben Yomo knife. With an Eino Ben Yomo knife: <strong>the food is completely permitted</strong> — no removal needed.',
